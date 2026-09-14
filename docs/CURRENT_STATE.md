@@ -6,7 +6,11 @@ Keep this file short. It is for facts an agent needs to know *right now* that do
 - None documented.
 
 ## Known limitations
-- None documented.
+- The repository currently contains a dependency-free interactive prototype,
+  product documentation, and research. It does not yet contain the production
+  private API, database, scheduled importers, authentication, or Trello sync.
+- Prototype metrics and media are synthetic. Live-data integrations must remain
+  on a private deployment and are not configured in this public repository.
 
 ## Known issues that affect development
 - None documented.

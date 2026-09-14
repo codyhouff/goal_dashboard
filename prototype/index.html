@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="dark">
+    <title>Northstar — Goal Dashboard Wireframe</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Northstar dashboard">
+        <span class="brand-mark">N</span>
+        <span>
+          <strong>NORTHSTAR</strong>
+          <small>Personal operating system</small>
+        </span>
+      </a>
+
+      <nav class="view-switcher" aria-label="Prototype views">
+        <button class="view-button active" data-view="wall">Dashboard</button>
+        <button class="view-button" data-view="tasks">Tasks</button>
+      </nav>
+
+      <div class="top-actions">
+        <div class="clock" aria-label="Current demo date and time">
+          <strong id="clock-time">7:42</strong>
+          <span id="clock-date">MON · SEP 14</span>
+        </div>
+        <button class="icon-button" id="privacy-toggle" aria-pressed="false" title="Mask financial values">
+          <span class="eye-icon" aria-hidden="true"></span>
+          <span class="action-label">Privacy</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="view active wall-view" id="wall-view" aria-label="Wall dashboard wireframe">
+        <div class="wall-layout">
+          <section class="vision-panel panel" aria-label="Rotating dream board">
+            <header class="wall-card-header">
+              <div><span class="eyebrow blue-text">VISION</span><h1>The life in view</h1></div>
+              <span class="wall-badge">3x3 ROTATION</span>
+            </header>
+            <div class="vision-grid">
+              <article class="vision-tile vision-physique"><span>Physique</span><b>STRONG</b></article>
+              <article class="vision-tile vision-travel"><span>Travel</span><b>EXPLORE</b></article>
+              <article class="vision-tile vision-style"><span>Style</span><b>REFINED</b></article>
+              <article class="vision-tile vision-home"><span>Home</span><b>CALM</b></article>
+              <article class="vision-tile vision-career"><span>Career</span><b>CREATE</b></article>
+              <article class="vision-tile vision-social"><span>People</span><b>CONNECTED</b></article>
+              <article class="vision-tile vision-freedom"><span>Freedom</span><b>OWN TIME</b></article>
+              <article class="vision-tile vision-life"><span>Experiences</span><b>LIVE</b></article>
+              <article class="vision-tile vision-future"><span>Future</span><b>BECOME</b></article>
+            </div>
+            <footer class="vision-footer"><span><i></i> Synthetic media placeholders</span><span>Next shift 00:18</span></footer>
+          </section>
+
+          <div class="wall-core">
+            <section class="direction-panel panel">
+              <div class="direction-title"><span class="eyebrow accent">DIRECTION</span><h2>Three moves that matter now</h2></div>
+              <ol class="priority-list">
+                <li><b>01</b><span>Ship the dashboard foundation<small>Build</small></span><i>72%</i></li>
+                <li><b>02</b><span>Train with consistency<small>Body</small></span><i>4 / 5</i></li>
+                <li><b>03</b><span>Protect the savings plan<small>Freedom</small></span><i>On pace</i></li>
+              </ol>
+            </section>
+
+            <div class="permanent-grid">
+              <section class="fire-panel panel">
+                <header class="wall-card-header">
+                  <div><span class="eyebrow lime-text">MONEY</span><h2>Financial freedom</h2></div>
+                  <span class="freshness"><i></i> CSV - 1 day old</span>
+                </header>
+                <div class="fire-content">
+                  <div class="asset-total"><span>INVESTED ASSETS</span><strong class="sensitive" data-value="$248,600">$248,600</strong><small>+$2,140 this month</small></div>
+                  <div class="fire-tiers">
+                    <div><span>LEAN</span><strong>62%</strong><i><b style="width:62%"></b></i><small class="sensitive" data-value="$151K left">$151K left</small></div>
+                    <div><span>FULL</span><strong>21%</strong><i><b style="width:21%"></b></i><small>~12.4 years</small></div>
+                    <div><span>FAT</span><strong>10%</strong><i><b style="width:10%"></b></i><small>long horizon</small></div>
+                  </div>
+                  <svg class="fire-spark" viewBox="0 0 350 100" preserveAspectRatio="none" aria-label="Synthetic FIRE forecast">
+                    <line x1="0" y1="23" x2="350" y2="23"></line><line x1="0" y1="54" x2="350" y2="54"></line><line x1="0" y1="82" x2="350" y2="82"></line>
+                    <path class="scenario optimistic" d="M0 92 C80 88 130 72 180 55 S285 22 350 8"></path>
+                    <path class="scenario base" d="M0 92 C90 90 140 78 195 64 S290 38 350 21"></path>
+                    <path class="scenario conservative" d="M0 92 C100 91 158 84 215 73 S300 57 350 43"></path>
+                  </svg>
+                </div>
+              </section>
+
+              <section class="body-panel panel compact-wall-card">
+                <header class="wall-card-header"><div><span class="eyebrow coral-text">BODY</span><h2>Physique</h2></div><span class="trend up">+0.3 / wk</span></header>
+                <div class="wall-stat-grid">
+                  <div><span>Weight</span><strong>162.4</strong><small>lb</small></div>
+                  <div><span>Body fat</span><strong>16.2</strong><small>%</small></div>
+                  <div><span>FFM</span><strong>136.1</strong><small>lb calc.</small></div>
+                  <div><span>FFMI</span><strong>19.4</strong><small>trend up</small></div>
+                </div>
+                <footer><span>Preferred source: scale</span><span>Today 06:12</span></footer>
+              </section>
+
+              <section class="recovery-panel panel compact-wall-card">
+                <header class="wall-card-header"><div><span class="eyebrow violet-text">HEALTH</span><h2>Recovery</h2></div><span class="readiness">GOOD</span></header>
+                <div class="recovery-lead"><strong>7<small>h</small> 48<small>m</small></strong><span>Sleep<br><b>+18m vs 30d</b></span></div>
+                <div class="recovery-row"><div><span>HRV</span><strong>61 <small>ms</small></strong></div><div><span>Resting HR</span><strong>53 <small>bpm</small></strong></div><div><span>Consistency</span><strong>84<small>%</small></strong></div></div>
+                <footer><span>Health bridge</span><span>Today 06:18</span></footer>
+              </section>
+            </div>
+
+            <section class="rotation-panel panel" aria-label="Rotating insight stage">
+              <header>
+                <div><span class="eyebrow">INSIGHT STAGE</span><h2 id="scene-title">Forecast: three possible paths</h2></div>
+                <div class="scene-tabs" role="tablist" aria-label="Insight scenes">
+                  <button class="active" data-scene="forecast" role="tab" aria-selected="true">FIRE</button>
+                  <button data-scene="physique" role="tab" aria-selected="false">90-day body</button>
+                  <button data-scene="weeks" role="tab" aria-selected="false">Life in weeks</button>
+                </div>
+              </header>
+              <div class="scene active" data-scene-panel="forecast">
+                <div class="scene-copy"><b>BASE CASE</b><strong>Lean tier in 4.8 years</strong><span>Assumptions visible: contribution, return, inflation</span></div>
+                <div class="forecast-stage">
+                  <svg viewBox="0 0 760 210" preserveAspectRatio="none" role="img" aria-label="Synthetic portfolio forecast with three scenarios">
+                    <g class="stage-grid"><line x1="0" y1="35" x2="760" y2="35"></line><line x1="0" y1="90" x2="760" y2="90"></line><line x1="0" y1="145" x2="760" y2="145"></line><line x1="0" y1="200" x2="760" y2="200"></line></g>
+                    <g class="milestone-lines"><line x1="0" y1="145" x2="760" y2="145"></line><line x1="0" y1="90" x2="760" y2="90"></line><line x1="0" y1="35" x2="760" y2="35"></line></g>
+                    <path class="contribution-area" d="M0 200 C120 188 210 174 315 155 S535 112 760 72 L760 210 L0 210 Z"></path>
+                    <path class="forecast-line optimistic" d="M0 198 C135 190 225 165 330 135 S560 66 760 18"></path>
+                    <path class="forecast-line base" d="M0 198 C140 193 245 177 350 150 S575 91 760 50"></path>
+                    <path class="forecast-line conservative" d="M0 198 C150 195 260 184 375 166 S595 124 760 91"></path>
+                  </svg>
+                  <div class="forecast-axis"><span>NOW</span><span>+5Y</span><span>+10Y</span><span>+15Y</span></div>
+                  <div class="forecast-legend"><span><i class="base"></i>Base</span><span><i class="range"></i>Scenario range</span><span><i class="capital"></i>Contributed capital</span><b>Tier lines use private targets</b></div>
+                </div>
+              </div>
+              <div class="scene" data-scene-panel="physique">
+                <div class="scene-copy"><b>90-DAY SIGNAL</b><strong>Trend is moving upward</strong><span>Measurements stay separate from inferred FFM and noise</span></div>
+                <div class="body-trend-bars"><i style="--bar:34%"></i><i style="--bar:45%"></i><i style="--bar:41%"></i><i style="--bar:57%"></i><i style="--bar:63%"></i><i style="--bar:71%"></i><i style="--bar:76%"></i><i style="--bar:84%"></i></div>
+              </div>
+              <div class="scene" data-scene-panel="weeks">
+                <div class="scene-copy"><b>LIFE IN WEEKS</b><strong>Keep the horizon visible</strong><span>Milestones are factual; technology ranges are speculative</span></div>
+                <div class="week-sample" aria-label="Sample life in weeks grid"></div>
+              </div>
+            </section>
+
+            <footer class="wall-source-rail">
+              <span><i class="ok"></i> Finance <b>1d</b></span><span><i class="ok"></i> Body <b>2h</b></span><span><i class="ok"></i> Sleep <b>2h</b></span><span><i class="warn"></i> Weather <b>setup</b></span><span class="demo-label">SYNTHETIC DEMO</span>
+            </footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="view tasks-view" id="tasks-view" aria-label="Personal task board">
+        <header class="tasks-header">
+          <div>
+            <span class="eyebrow accent">EXECUTION</span>
+            <h1>Turn the vision into work.</h1>
+            <p>Every card belongs to a LIFE OS section. Drag cards or use their arrow controls to advance the work.</p>
+          </div>
+          <div class="task-summary">
+            <div><strong id="open-task-count">8</strong><span>OPEN</span></div>
+            <div><strong id="done-task-count">2</strong><span>DONE</span></div>
+            <div class="sync-card"><i></i><span><b>LOCAL PROTOTYPE</b>Trello-ready adapter</span></div>
+          </div>
+        </header>
+
+        <div class="board-toolbar">
+          <div class="section-key" aria-label="Task section colors">
+            <span><i class="finance"></i>Financial</span><span><i class="physique"></i>Physique</span><span><i class="recovery"></i>Recovery</span><span><i class="vision"></i>Vision</span><span><i class="platform"></i>Platform</span>
+          </div>
+          <span class="board-note">Changes save in this browser</span>
+        </div>
+
+        <div class="kanban-board" aria-label="LIFE OS Kanban board">
+          <section class="kanban-column" data-column="todo">
+            <header><div><i></i><h2>To do</h2><span class="column-count">2</span></div><small>CAPTURED</small></header>
+            <div class="task-list" data-dropzone="todo">
+              <article class="task-card" draggable="true" data-task-id="weather-provider">
+                <div class="task-card-top"><span class="section-tag weather">Weather</span><b>MED</b></div><h3>Choose the weather data provider</h3><p>Compare privacy, forecast coverage, UV data, and request limits.</p><footer><span>Data source</span><div class="move-controls"><button data-move="next" aria-label="Move Choose the weather data provider forward">&rarr;</button></div></footer>
+              </article>
+              <article class="task-card" draggable="true" data-task-id="goal-priorities">
+                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>HIGH</b></div><h3>Define the first five active goals</h3><p>Select the goals allowed to appear in the wall Direction rail.</p><footer><span>Dashboard</span><div class="move-controls"><button data-move="next" aria-label="Move Define the first five active goals forward">&rarr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+
+          <section class="kanban-column" data-column="research">
+            <header><div><i></i><h2>Research</h2><span class="column-count">2</span></div><small>LEARN FIRST</small></header>
+            <div class="task-list" data-dropzone="research">
+              <article class="task-card" draggable="true" data-task-id="finance-import">
+                <div class="task-card-top"><span class="section-tag finance">Financial</span><b>HIGH</b></div><h3>Validate financial account exports</h3><p>Collect sample schemas and document safe deduplication rules.</p><footer><span>Importer</span><div class="move-controls"><button data-move="previous" aria-label="Move finance import research backward">&larr;</button><button data-move="next" aria-label="Move finance import research forward">&rarr;</button></div></footer>
+              </article>
+              <article class="task-card" draggable="true" data-task-id="health-bridge">
+                <div class="task-card-top"><span class="section-tag recovery">Recovery</span><b>HIGH</b></div><h3>Test the Health Connect export path</h3><p>Confirm which smart-scale, sleep, HRV, and resting-HR fields arrive.</p><footer><span>Phone bridge</span><div class="move-controls"><button data-move="previous" aria-label="Move health bridge research backward">&larr;</button><button data-move="next" aria-label="Move health bridge research forward">&rarr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+
+          <section class="kanban-column" data-column="plan">
+            <header><div><i></i><h2>Plan</h2><span class="column-count">2</span></div><small>MAKE IT CLEAR</small></header>
+            <div class="task-list" data-dropzone="plan">
+              <article class="task-card" draggable="true" data-task-id="fire-formulas">
+                <div class="task-card-top"><span class="section-tag finance">Financial</span><b>HIGH</b></div><h3>Specify FIRE forecasting formulas</h3><p>Define scenario assumptions and split contributions from returns.</p><footer><span>Calculation</span><div class="move-controls"><button data-move="previous" aria-label="Move FIRE formulas backward">&larr;</button><button data-move="next" aria-label="Move FIRE formulas forward">&rarr;</button></div></footer>
+              </article>
+              <article class="task-card" draggable="true" data-task-id="media-rotation">
+                <div class="task-card-top"><span class="section-tag vision">Vision</span><b>MED</b></div><h3>Plan dream-board media rotation</h3><p>Choose crops, timing, transitions, and presence-mode privacy.</p><footer><span>Media</span><div class="move-controls"><button data-move="previous" aria-label="Move media rotation backward">&larr;</button><button data-move="next" aria-label="Move media rotation forward">&rarr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+
+          <section class="kanban-column progress-column" data-column="progress">
+            <header><div><i></i><h2>In progress</h2><span class="column-count">2</span></div><small>LIMIT: 3</small></header>
+            <div class="task-list" data-dropzone="progress">
+              <article class="task-card" draggable="true" data-task-id="dense-wall">
+                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>HIGH</b></div><h3>Densify the wall dashboard</h3><p>Prioritize tracking and forecasts; remove decorative filler.</p><div class="task-progress"><i style="width:72%"></i></div><footer><span>72% complete</span><div class="move-controls"><button data-move="previous" aria-label="Move dense wall backward">&larr;</button><button data-move="next" aria-label="Move dense wall forward">&rarr;</button></div></footer>
+              </article>
+              <article class="task-card" draggable="true" data-task-id="section-inventory">
+                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>MED</b></div><h3>Inventory section data requirements</h3><p>Map each visible metric to source, cadence, and calculation.</p><div class="task-progress"><i style="width:88%"></i></div><footer><span>88% complete</span><div class="move-controls"><button data-move="previous" aria-label="Move section inventory backward">&larr;</button><button data-move="next" aria-label="Move section inventory forward">&rarr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+
+          <section class="kanban-column done-column" data-column="done">
+            <header><div><i></i><h2>Done</h2><span class="column-count">2</span></div><small>SHIPPED</small></header>
+            <div class="task-list" data-dropzone="done">
+              <article class="task-card completed" draggable="true" data-task-id="privacy-boundary">
+                <div class="task-card-top"><span class="section-tag platform">Security</span><b>DONE</b></div><h3>Define the private-data boundary</h3><p>Public code and demo data; private facts stay on the mini PC.</p><footer><span>Completed</span><div class="move-controls"><button data-move="previous" aria-label="Move privacy boundary backward">&larr;</button></div></footer>
+              </article>
+              <article class="task-card completed" draggable="true" data-task-id="first-wireframe">
+                <div class="task-card-top"><span class="section-tag vision">Vision</span><b>DONE</b></div><h3>Build the first wall wireframe</h3><p>Establish the five-question layout and responsive visual system.</p><footer><span>Completed</span><div class="move-controls"><button data-move="previous" aria-label="Move first wireframe backward">&larr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <footer class="kanban-footer">
+          <span><b>Future sync:</b> Trello lists map to stages; Trello labels map to LIFE OS sections.</span>
+          <span>Tokens remain in the private backend, never this browser.</span>
+        </footer>
+      </section>
+
+      <section class="view" id="dashboard-view" aria-label="Goal dashboard">
+        <div class="dashboard-shell">
+          <aside class="sidebar">
+            <section class="trajectory-card panel">
+              <div class="eyebrow">2026 TRAJECTORY</div>
+              <div class="score-ring" style="--score: 72">
+                <div><strong>72</strong><span>ON TRACK</span></div>
+              </div>
+              <p>Up 4 points this month</p>
+              <div class="mini-bars" aria-label="Monthly score trend">
+                <i style="--h: 36%"></i><i style="--h: 48%"></i><i style="--h: 43%"></i>
+                <i style="--h: 61%"></i><i style="--h: 57%"></i><i class="hot" style="--h: 76%"></i>
+              </div>
+            </section>
+
+            <nav class="goal-nav" aria-label="Goal areas">
+              <a class="active" href="#focus"><span class="nav-icon">✦</span><span>Overview</span></a>
+              <a href="#health"><span class="nav-icon">♥</span><span>Health</span><b>78</b></a>
+              <a href="#finance"><span class="nav-icon">↗</span><span>Financial</span><b>68</b></a>
+              <a href="#projects"><span class="nav-icon">◇</span><span>Projects</span><b>71</b></a>
+              <a href="#habits"><span class="nav-icon">✓</span><span>Habits</span><b>64</b></a>
+            </nav>
+
+            <section class="quote-card">
+              <span>DAILY REMINDER</span>
+              <blockquote>“Direction matters more than speed.”</blockquote>
+            </section>
+
+            <div class="demo-chip"><i></i> SYNTHETIC DEMO DATA</div>
+          </aside>
+
+          <div class="dashboard-content">
+            <section class="focus-card panel" id="focus">
+              <div>
+                <div class="eyebrow accent">TODAY'S NORTH STAR</div>
+                <h1>Build the system<br>that builds the life.</h1>
+                <p>Finish the first dashboard wireframe and take a 30-minute zone 2 walk.</p>
+              </div>
+              <div class="day-progress">
+                <span>DAY 257 / 365</span>
+                <strong>70%</strong>
+                <div class="progress"><i style="width: 70%"></i></div>
+                <small>108 days remain</small>
+              </div>
+            </section>
+
+            <div class="section-heading" id="projects">
+              <div><span class="eyebrow">PRIMARY GOALS</span><h2>Momentum by area</h2></div>
+              <button class="text-button">View all goals <span>→</span></button>
+            </div>
+
+            <section class="goal-grid">
+              <article class="goal-card panel coral">
+                <div class="goal-top"><span class="goal-symbol">♥</span><span class="trend up">+6%</span></div>
+                <span class="eyebrow">HEALTH</span><h3>Strong body,<br>steady energy</h3>
+                <div class="metric-line"><strong>78%</strong><span>annual target</span></div>
+                <div class="progress"><i style="width: 78%"></i></div>
+                <footer><span>3 milestones active</span><span>Updated 6:10 AM</span></footer>
+              </article>
+              <article class="goal-card panel lime">
+                <div class="goal-top"><span class="goal-symbol">↗</span><span class="trend up">+2.4%</span></div>
+                <span class="eyebrow">FINANCIAL</span><h3>Freedom fund<br>and investments</h3>
+                <div class="metric-line"><strong>68%</strong><span>annual target</span></div>
+                <div class="progress"><i style="width: 68%"></i></div>
+                <footer><span>2 milestones active</span><span>Updated yesterday</span></footer>
+              </article>
+              <article class="goal-card panel violet">
+                <div class="goal-top"><span class="goal-symbol">◇</span><span class="trend neutral">steady</span></div>
+                <span class="eyebrow">CRAFT</span><h3>Ship meaningful<br>work consistently</h3>
+                <div class="metric-line"><strong>71%</strong><span>annual target</span></div>
+                <div class="progress"><i style="width: 71%"></i></div>
+                <footer><span>4 milestones active</span><span>Updated today</span></footer>
+              </article>
+              <article class="goal-card panel blue">
+                <div class="goal-top"><span class="goal-symbol">◎</span><span class="trend down">−3%</span></div>
+                <span class="eyebrow">LIFE</span><h3>Relationships<br>and experiences</h3>
+                <div class="metric-line"><strong>64%</strong><span>annual target</span></div>
+                <div class="progress"><i style="width: 64%"></i></div>
+                <footer><span>2 milestones active</span><span>Updated Sunday</span></footer>
+              </article>
+            </section>
+
+            <section class="insight-grid">
+              <article class="panel detail-card health-card" id="health">
+                <header><div><span class="eyebrow coral-text">HEALTH PULSE</span><h2>Ready for a strong day</h2></div><span class="status fresh">Fresh · 6:10 AM</span></header>
+                <div class="health-metrics">
+                  <div><span>Sleep</span><strong>7h 42m</strong><small>↑ 22m avg</small></div>
+                  <div><span>Steps</span><strong>8,460</strong><small>1,540 to goal</small></div>
+                  <div><span>Resting HR</span><strong>54 <small>bpm</small></strong><small>↓ 3 this month</small></div>
+                </div>
+                <div class="chart-wrap">
+                  <div class="chart-label"><span>ENERGY TREND · 14 DAYS</span><strong>Improving</strong></div>
+                  <svg class="line-chart" viewBox="0 0 600 120" preserveAspectRatio="none" role="img" aria-label="Demo health trend"></svg>
+                </div>
+              </article>
+
+              <article class="panel detail-card finance-card" id="finance">
+                <header><div><span class="eyebrow lime-text">FINANCIAL PULSE</span><h2>Compounding on plan</h2></div><span class="status delayed">CSV · 1 day ago</span></header>
+                <div class="finance-summary">
+                  <div><span>Tracked assets</span><strong class="sensitive" data-value="$184,260">$184,260</strong><small>Demo portfolio</small></div>
+                  <div><span>2026 contributions</span><strong class="sensitive" data-value="$18,420">$18,420</strong><small>74% of target</small></div>
+                </div>
+                <div class="allocation">
+                  <div class="allocation-bar"><i class="domestic"></i><i class="international"></i><i class="bonds"></i><i class="cash"></i></div>
+                  <div class="legend"><span><i class="domestic"></i>US equity 58%</span><span><i class="international"></i>Intl 22%</span><span><i class="bonds"></i>Bonds 15%</span><span><i class="cash"></i>Cash 5%</span></div>
+                </div>
+              </article>
+
+              <article class="panel habit-card" id="habits">
+                <header><div><span class="eyebrow violet-text">WEEKLY RHYTHM</span><h2>4 of 6 habits on pace</h2></div><strong>67%</strong></header>
+                <div class="habit-table" role="table" aria-label="Weekly habit completion">
+                  <div class="habit-row header" role="row"><span></span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+                  <div class="habit-row" role="row"><b>Move 30 min</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="today"></i><i></i><i></i><i></i></div>
+                  <div class="habit-row" role="row"><b>Deep work</b><i class="done"></i><i class="done"></i><i></i><i class="today"></i><i></i><i></i><i></i></div>
+                  <div class="habit-row" role="row"><b>Read 20 min</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="today"></i><i></i><i></i><i></i></div>
+                  <div class="habit-row" role="row"><b>Plan tomorrow</b><i class="done"></i><i></i><i class="done"></i><i class="today"></i><i></i><i></i><i></i></div>
+                </div>
+              </article>
+
+              <article class="panel agenda-card">
+                <header><div><span class="eyebrow blue-text">NEXT UP</span><h2>Three meaningful moves</h2></div><span>THIS WEEK</span></header>
+                <ol>
+                  <li><time>MON<br><b>14</b></time><div><strong>Dashboard wireframe</strong><span>Project · Today</span></div><i class="violet-dot"></i></li>
+                  <li><time>WED<br><b>16</b></time><div><strong>Long training session</strong><span>Health · 6:30 AM</span></div><i class="coral-dot"></i></li>
+                  <li><time>FRI<br><b>18</b></time><div><strong>Monthly money review</strong><span>Finance · 5:00 PM</span></div><i class="lime-dot"></i></li>
+                </ol>
+              </article>
+            </section>
+
+            <footer class="source-strip">
+              <span><i class="ok"></i> Dashboard API <b>live</b></span>
+              <span><i class="ok"></i> Health export <b>6:10 AM</b></span>
+              <span><i class="warn"></i> Brokerage CSV <b>1 day ago</b></span>
+              <span><i class="ok"></i> Manual goals <b>today</b></span>
+              <button>Data sources →</button>
+            </footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="view system-view" id="system-view" aria-label="System architecture map">
+        <div class="system-intro">
+          <div><span class="eyebrow accent">PRIVATE-BY-DESIGN ARCHITECTURE</span><h1>Public code.<br>Private life.</h1></div>
+          <p>The repository publishes how the dashboard works. The home server owns everything personal. Each boundary below is deliberate and auditable.</p>
+        </div>
+
+        <div class="architecture-map">
+          <section class="architecture-zone public-zone">
+            <header><span class="zone-number">01</span><div><span>PUBLIC INTERNET</span><h2>Build and release</h2></div><b>NO PERSONAL DATA</b></header>
+            <div class="node github-node">
+              <span class="node-icon">⌘</span><div><small>PUBLIC GITHUB REPOSITORY</small><h3>goal-dashboard</h3><p>Frontend · backend · import adapters · documentation · synthetic demo data</p></div>
+              <ul><li>Version-controlled source</li><li>Automated verification</li><li>Signed release artifact</li></ul>
+            </div>
+            <div class="flow-label"><span>HTTPS</span><strong>Pull approved release</strong><i>↓</i></div>
+          </section>
+
+          <section class="architecture-zone private-zone">
+            <header><span class="zone-number">02</span><div><span>HOME TRUST BOUNDARY</span><h2>Private compute</h2></div><b>LAN ONLY</b></header>
+            <div class="host-banner">
+              <span class="node-icon server">▥</span><div><small>MINI PC</small><h3>Lenovo M720q / M920q</h3><p>Intel i5-8500T · Ubuntu 26.04 LTS · internal SSD</p></div>
+              <div class="host-tags"><span>SSH</span><span>Firewall</span><span>Encrypted secrets</span></div>
+            </div>
+
+            <div class="integration-note">
+              <span><b>FINANCE V1</b> watched CSV inbox</span>
+              <span><b>HEALTH V1</b> phone-side export or bridge</span>
+              <span><b>DERIVED</b> versioned formulas, never rewritten facts</span>
+            </div>
+            <div class="pipeline">
+              <div class="pipeline-column sources-column">
+                <span class="column-label">INPUTS</span>
+                <article class="mini-node"><i class="finance-source">$</i><div><strong>Financial accounts</strong><small>Private CSV import inbox</small></div><span>manual V1</span></article>
+                <article class="mini-node"><i class="health">♥</i><div><strong>Smart scale + Health</strong><small>Phone export / bridge</small></div><span>daily</span></article>
+                <article class="mini-node"><i class="sheets">▦</i><div><strong>Goals + weather</strong><small>Forms, optional Sheets, forecast</small></div><span>mixed</span></article>
+                <article class="mini-node"><i class="manual">✎</i><div><strong>Manual entry</strong><small>Private authenticated forms</small></div><span>event</span></article>
+              </div>
+
+              <div class="pipeline-arrow"><span>validate</span><i>→</i><span>normalize</span></div>
+
+              <div class="pipeline-column docker-column">
+                <span class="column-label">DOCKER SERVICES</span>
+                <article class="service-node importer"><span>01</span><div><strong>Scheduled importers</strong><small>Fetch · validate · deduplicate · log freshness</small></div></article>
+                <i class="down-arrow">↓</i>
+                <article class="service-node api"><span>02</span><div><strong>Calculation engine</strong><small>FIRE · FFM/FFMI · trends · transparent scores</small></div></article>
+                <i class="down-arrow">↓</i>
+                <article class="service-node api"><span>03</span><div><strong>Private dashboard API</strong><small>Authorize · filter sensitivity · serve summaries</small></div></article>
+                <i class="down-arrow">↓</i>
+                <article class="service-node frontend"><span>04</span><div><strong>Responsive frontend</strong><small>Wall · laptop · phone presentations</small></div></article>
+              </div>
+
+              <div class="pipeline-arrow reverse"><span>read/write</span><i>↔</i><span>snapshots</span></div>
+
+              <div class="pipeline-column storage-column">
+                <span class="column-label">PRIVATE STORAGE</span>
+                <article class="database-node"><div class="db-disc"></div><strong>SQLite</strong><small>Normalized facts</small><small>Goal configuration</small><small>Import status</small><small>Derived snapshots</small></article>
+                <article class="secrets-node"><span>▣</span><div><strong>Private media</strong><small>Dream board files stay off GitHub</small></div></article>
+                <article class="secrets-node"><span>◆</span><div><strong>Encrypted secrets</strong><small>Tokens never reach browser or GitHub</small></div></article>
+              </div>
+            </div>
+
+            <div class="operations-row">
+              <article><span>↻</span><div><strong>Automatic recovery</strong><small>Services restart after failure or reboot</small></div></article>
+              <article><span>⌁</span><div><strong>Encrypted backups</strong><small>Versioned database + configuration copy</small></div></article>
+              <article><span>✓</span><div><strong>Health monitoring</strong><small>Import freshness and service status</small></div></article>
+            </div>
+          </section>
+
+          <section class="architecture-zone delivery-zone">
+            <header><span class="zone-number">03</span><div><span>EXPERIENCE LAYER</span><h2>One app, three surfaces</h2></div><b>ROLE-BASED ACCESS</b></header>
+            <div class="device-flow"><span>Private API over HTTPS</span><i>↓</i></div>
+            <div class="device-grid">
+              <article><div class="device wall-device"><div class="device-screen"><span></span><span></span><span></span></div></div><strong>Wall display</strong><small>Chromium kiosk · view only<br>Masked sensitive values</small><b>localhost:3000</b></article>
+              <article><div class="device laptop-device"><div class="device-screen"><span></span><span></span></div></div><strong>Laptop</strong><small>Detailed analysis · editing<br>Home network or private tunnel</small><b>dashboard.home</b></article>
+              <article><div class="device phone-device"><div class="device-screen"><span></span><span></span><span></span></div></div><strong>Phone</strong><small>Condensed view · quick entry<br>Installable web app</small><b>private access</b></article>
+            </div>
+          </section>
+        </div>
+
+        <section class="trust-rules panel">
+          <span class="eyebrow">NON-NEGOTIABLE TRUST RULES</span>
+          <div><p><b>01</b> No provider password is stored when OAuth or export is available.</p><p><b>02</b> Financial connectors remain read-only; the system cannot trade.</p><p><b>03</b> Every metric carries its source and last-refresh status.</p><p><b>04</b> Demo mode cannot access production data or secrets.</p></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

@@ -8,12 +8,11 @@ Use the narrowest verification that gives adequate confidence for the risk of th
 
 | Check | Command | When to run |
 | --- | --- | --- |
-| Targeted tests | TBD | Every behavior-changing edit |
-| Unit tests | TBD | Normal feature / bug work |
-| Typecheck | TBD | When the stack supports static checking |
-| Lint | TBD | Normal code changes |
-| Integration | TBD | Cross-component behavior |
-| E2E | TBD | High-risk user flows |
+| Prototype markup | `python -m html.parser prototype/index.html` | Prototype edits |
+| Prototype script syntax | `node --check prototype/app.js` | Prototype script edits |
+| Prototype smoke server | `python -m http.server 3000 --directory prototype` | Visual review |
+
+Production checks remain unconfigured until the production stack is selected.
 
 Treat this file as the single source of truth for project verification commands. Until the commands are configured, or when a check was not run, report verification as unverified.
 

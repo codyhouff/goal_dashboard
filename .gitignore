@@ -10,6 +10,45 @@ Thumbs.db
 !.env.example
 *.pem
 *.key
+*.age
+*.enc
+
+# LIFE OS private configuration and runtime data
+private/
+data/
+runtime/
+imports/
+backups/
+secrets/
+media/private/
+config/private.*
+config/local.*
+/docs/dashboard_blueprint.md
+
+# Private databases and provider exports
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+*.sqlite-shm
+*.sqlite-wal
+*.csv
+*.tsv
+*.ofx
+*.qfx
+*.fit
+*.gpx
+*.tcx
+
+# Explicit locations may contain synthetic, reviewable public fixtures
+!demo/**/*.csv
+!prototype/demo/**/*.csv
+!tests/fixtures/**/*.csv
+
+# Personal media and backup archives belong under ignored private paths
+*.bak
+*.backup
 
 # Logs / temp
 *.log
