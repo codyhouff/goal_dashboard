@@ -16,8 +16,8 @@ The dependency-free prototype currently provides two primary views:
 
 - **Dashboard** - a dense wall-first view for tracking, forecasting, recovery,
   direction, and vision.
-- **Tasks** - a five-stage Kanban board with To do, Research, Plan, In progress,
-  and Done columns.
+- **Tasks** - a six-stage Jira goals board with This Year, This Month, This Week,
+  Research, In Progress, and Done columns.
 
 Development-only Explore and System Map views remain accessible by URL.
 
@@ -74,15 +74,15 @@ policy and `.gitignore`.
 - [Android Kanban application research](docs/research/android-kanban-apps.md)
 - [Verification](docs/TESTING.md)
 
-## Trello task synchronization
+## Jira task synchronization
 
-Trello is the leading external task-provider candidate. A production adapter is
-expected to map Trello lists to workflow stages and labels to LIFE OS sections.
-Provider credentials will be encrypted on the private backend and will never be
-embedded in browser JavaScript or committed to this repository.
+Jira Cloud is the planned task source of truth. A production adapter will map
+Jira statuses to the six workflow stages and Epic/parent relationships to LIFE
+OS sections. Provider credentials will be encrypted on the private backend and
+will never be embedded in browser JavaScript or committed to this repository.
 
 The current Kanban prototype uses browser-local persistence only. It does not
-connect to a real Trello account.
+connect to a real Jira account.
 
 ## Project status
 

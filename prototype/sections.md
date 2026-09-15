@@ -12,7 +12,7 @@ The detailed Android task-provider comparison is maintained in
 | View | Purpose | Interaction |
 | --- | --- | --- |
 | Dashboard | Dense tracking, forecasting, source freshness, and rotating visual detail | Primarily view-only on the wall; drill down on laptop/phone |
-| Tasks | Jira-style personal workflow tied to LIFE OS sections | Add, edit, reorder, and move cards; eventual Trello synchronization |
+| Tasks | Jira-backed personal workflow tied to LIFE OS sections | Add, edit, reorder, and move cards; Jira is the eventual source of truth |
 
 The architecture map and exploratory component gallery remain development views,
 not primary product tabs.
@@ -141,46 +141,116 @@ automatic rotation.
 
 ## Tasks board schema
 
+The selected visible workflow is:
+
+```text
+This Year -> This Month -> This Week -> Research -> In Progress -> Done
+```
+
+`This Week` is the commitment point: cards to its left are planned; cards to its
+right are being actively learned or executed. Start with WIP limits of two cards
+in Research and two cards in In Progress.
+
 Every task needs:
 
 | Field | Purpose |
 | --- | --- |
 | `id` | Stable local/provider identity |
 | `title` | Short actionable description |
-| `stage` | `todo`, `research`, `plan`, `progress`, or `done` |
+| `stage` | `year`, `month`, `week`, `research`, `progress`, or `done` |
 | `section` | Financial, Physique, Recovery, Vision, Style, Life, Wardrobe, Weather, or Platform |
 | `priority` | Ordering and Direction-rail eligibility |
 | `due_at` | Optional due date/time |
 | `notes` | Detail, links, and acceptance criteria |
-| `source` / `external_id` | Local, Trello, or another future provider |
+| `source` / `external_id` | Local demo or Jira issue identity |
 | `wall_visible` | Whether it may appear in Direction |
 | `updated_at` | Conflict resolution and freshness |
 
-## Recommended phone synchronization
+## Jira goals model
 
-Trello is the leading external option for this project because its boards,
-lists, and cards map directly to the proposed workflow and it has first-party
-iOS/Android applications. The integration boundary should be:
+Use Jira's normal team-managed hierarchy without inventing another layer:
 
 ```text
-Trello mobile/web <-> Trello API/webhook <-> private task adapter
-                                           |
-                                           v
-                                        SQLite
-                                           |
-                                           v
-                               dashboard API -> Tasks view
+Epic = life area
+  Goal or Task = outcome
+    Subtask = step or milestone
 ```
 
-The five Trello lists use the exact stage names. LIFE OS sections can be Trello
-labels. The mini PC stores the token as an encrypted secret; the browser never
-receives it. Since Trello webhooks require a reachable HTTPS callback, V1 can
-poll periodically while open and later use a narrowly exposed signed webhook or
-private relay. Local tasks remain supported so the dashboard is not dependent on
-Trello.
+Examples of life-area Epics include Financial, Physique, Recovery, Vision,
+Career, Home/Life, and Learning. A custom standard work type named `Goal` can
+represent an outcome; ordinary `Task` items remain available for one-off work.
+Labels are reserved for genuinely cross-cutting concepts rather than repeating
+the Epic.
+
+The visible statuses map to Jira's three reporting categories as follows:
+
+| Visible status | Jira category | Meaning |
+| --- | --- | --- |
+| This Year | To do | Annual commitment |
+| This Month | To do | Current monthly focus |
+| This Week | To do | Commitment to advance now |
+| Research | In progress | Actively investigating; WIP limit 2 |
+| In Progress | In progress | Actively executing; WIP limit 2 |
+| Done | Done | Completion criteria met |
+
+Due dates are used only for real deadlines. Recurring routines should be created
+by Jira Automation rather than represented as a permanent workflow column.
+
+## Jira synchronization boundary
+
+Jira Cloud is the authoritative task store. The dashboard may cache a normalized
+read model, but it does not maintain a competing editable task database.
+
+```text
+Jira mobile/web <-> Jira Cloud REST API <-> private Jira adapter
+                                               |
+                                               v
+                                    normalized task cache
+                                               |
+                                               v
+                                    dashboard API -> Tasks view
+```
+
+V1 can poll Jira using JQL and discover valid transition IDs from each issue's
+available transitions. Later, a narrowly exposed authenticated webhook can
+invalidate the local cache for faster updates. The private backend stores the
+Jira credential; the browser receives task-shaped data only.
+
+## AI-assisted note intake
+
+AI converts notes into proposed Jira changes, never silent writes:
+
+```text
+private notes -> AI structured draft -> schema validation -> owner review
+              -> create/update Jira issues -> refresh dashboard cache
+```
+
+Each draft contains a summary, description, Epic/life area, work type, proposed
+status, priority, optional real due date, acceptance criteria, and subtasks. The
+owner approves the draft before creation. Bulk changes, deletion, or moving work
+to Done always require explicit confirmation and should be recorded in an audit
+log.
+
+## Private Jira configuration
+
+The public `.env.example` contains placeholders. Real values belong only in the
+ignored root `.env` on the private host:
+
+```env
+JIRA_BASE_URL=https://example.atlassian.net
+JIRA_PROJECT_KEY=EXAMPLE
+JIRA_BOARD_ID=123
+JIRA_ACCOUNT_EMAIL=you@example.com
+JIRA_API_TOKEN=
+```
+
+Never paste a token into source, browser JavaScript, issue descriptions, logs,
+screenshots, or chat. Prefer OAuth for a distributable integration; an API token
+is acceptable for the initial private single-user backend when protected with
+least-privilege Jira permissions.
 
 Provider references:
 
-- [Trello REST API introduction](https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/)
-- [Trello webhook guide](https://developer.atlassian.com/cloud/trello/guides/rest-api/webhooks/)
-- [Supported Trello mobile platforms](https://support.atlassian.com/trello/docs/what-browsers-and-mobile-platforms-does-trello-support/)
+- [Jira Cloud issue REST API](https://developer.atlassian.com/cloud/jira/platform/rest/v3/api-group-issues/)
+- [Jira OAuth scopes](https://developer.atlassian.com/cloud/jira/platform/scopes-for-oauth-2-3LO-and-forge-apps/)
+- [Jira Automation triggers](https://support.atlassian.com/cloud-automation/docs/jira-automation-triggers/)

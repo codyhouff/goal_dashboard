@@ -36,8 +36,8 @@ authenticated devices can use it over the home network.
 7. Chromium opens the local frontend in kiosk mode on the wall display.
 8. Backup jobs encrypt and copy the database, private media metadata, and configuration to an approved
    backup destination.
-9. A task adapter maps external lists to local workflow stages and external
-   labels to LIFE OS sections. Provider credentials remain server-side.
+9. A Jira adapter maps Jira statuses to local workflow stages and Epic/parent
+   relationships to LIFE OS sections. Provider credentials remain server-side.
 
 ## Boundaries and invariants
 - GitHub never contains personal data, runtime databases, credentials, or exports.
@@ -55,7 +55,8 @@ authenticated devices can use it over the home network.
 - Google Health/Health Connect export.
 - Google Sheets and manual-entry adapters.
 - Optional private-network access such as Tailscale.
-- Optional Trello API adapter for phone-friendly task capture and movement.
+- Jira Cloud REST API for phone-friendly task capture, movement, and dashboard
+  synchronization.
 
 ## Architecture rules
 - Follow existing module boundaries unless the task explicitly changes them.

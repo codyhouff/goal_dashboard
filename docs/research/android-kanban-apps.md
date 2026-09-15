@@ -1,5 +1,11 @@
 # Android Kanban Apps for LIFE OS Dashboard Integration
 
+> **Decision update (September 2026):** Jira Cloud was selected as the task
+> source of truth because the goals workflow is already established there and
+> Jira provides the hierarchy, status categories, automation, API, and AI/MCP
+> path the dashboard needs. The comparison below is retained as research rather
+> than current implementation guidance.
+
 ## Executive conclusion
 
 Trello is the best first choice for this dashboard. It offers the cleanest

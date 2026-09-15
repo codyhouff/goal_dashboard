@@ -19,14 +19,16 @@ One individual who owns and controls the underlying data and home server.
 ## In scope
 - Two primary views: a dense tracking/forecasting Dashboard and a section-tagged
   Tasks board.
-- A five-stage task workflow: To do, Research, Plan, In progress, and Done.
+- A six-stage Jira goals workflow: This Year, This Month, This Week, Research,
+  In Progress, and Done.
 - Responsive wall, desktop, and mobile dashboard views.
 - FIRE forecasting, body composition, recovery, goal, dream-board, milestone,
   weather, and supporting lifestyle summaries.
 - A privacy mode that masks sensitive values on shared displays.
 - A local API, SQLite data store, scheduled imports, and encrypted backups.
 - Demo data for public development and screenshots.
-- Optional phone-friendly task-provider synchronization through the private API.
+- Jira Cloud synchronization through the private API for phone-friendly capture,
+  planning, and execution.
 
 ## Out of scope
 - Trading or moving money.

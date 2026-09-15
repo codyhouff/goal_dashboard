@@ -8,7 +8,7 @@ Keep this file short. It is for facts an agent needs to know *right now* that do
 ## Known limitations
 - The repository currently contains a dependency-free interactive prototype,
   product documentation, and research. It does not yet contain the production
-  private API, database, scheduled importers, authentication, or Trello sync.
+  private API, database, scheduled importers, authentication, or Jira sync.
 - Prototype metrics and media are synthetic. Live-data integrations must remain
   on a private deployment and are not configured in this public repository.
 

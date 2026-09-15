@@ -156,12 +156,12 @@
           <div>
             <span class="eyebrow accent">EXECUTION</span>
             <h1>Turn the vision into work.</h1>
-            <p>Every card belongs to a LIFE OS section. Drag cards or use their arrow controls to advance the work.</p>
+            <p>Jira goals flow from planning horizon to active work. Drag cards or use their arrow controls to advance the work.</p>
           </div>
           <div class="task-summary">
             <div><strong id="open-task-count">8</strong><span>OPEN</span></div>
             <div><strong id="done-task-count">2</strong><span>DONE</span></div>
-            <div class="sync-card"><i></i><span><b>LOCAL PROTOTYPE</b>Trello-ready adapter</span></div>
+            <div class="sync-card"><i></i><span><b>JIRA TARGET</b>Local demo mode</span></div>
           </div>
         </header>
 
@@ -169,24 +169,45 @@
           <div class="section-key" aria-label="Task section colors">
             <span><i class="finance"></i>Financial</span><span><i class="physique"></i>Physique</span><span><i class="recovery"></i>Recovery</span><span><i class="vision"></i>Vision</span><span><i class="platform"></i>Platform</span>
           </div>
-          <span class="board-note">Changes save in this browser</span>
+          <span class="board-note">Demo changes save in this browser; Jira becomes the live source of truth</span>
         </div>
 
-        <div class="kanban-board" aria-label="LIFE OS Kanban board">
-          <section class="kanban-column" data-column="todo">
-            <header><div><i></i><h2>To do</h2><span class="column-count">2</span></div><small>CAPTURED</small></header>
-            <div class="task-list" data-dropzone="todo">
+        <div class="kanban-board" aria-label="Jira goals Kanban board">
+          <section class="kanban-column" data-column="year" data-jira-category="todo">
+            <header><div><i></i><h2>This Year</h2><span class="column-count">2</span></div><small>ANNUAL COMMITMENT</small></header>
+            <div class="task-list" data-dropzone="year">
               <article class="task-card" draggable="true" data-task-id="weather-provider">
                 <div class="task-card-top"><span class="section-tag weather">Weather</span><b>MED</b></div><h3>Choose the weather data provider</h3><p>Compare privacy, forecast coverage, UV data, and request limits.</p><footer><span>Data source</span><div class="move-controls"><button data-move="next" aria-label="Move Choose the weather data provider forward">&rarr;</button></div></footer>
               </article>
-              <article class="task-card" draggable="true" data-task-id="goal-priorities">
-                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>HIGH</b></div><h3>Define the first five active goals</h3><p>Select the goals allowed to appear in the wall Direction rail.</p><footer><span>Dashboard</span><div class="move-controls"><button data-move="next" aria-label="Move Define the first five active goals forward">&rarr;</button></div></footer>
+              <article class="task-card" draggable="true" data-task-id="media-rotation">
+                <div class="task-card-top"><span class="section-tag vision">Vision</span><b>MED</b></div><h3>Plan dream-board media rotation</h3><p>Choose crops, timing, transitions, and presence-mode privacy.</p><footer><span>Media</span><div class="move-controls"><button data-move="next" aria-label="Move media rotation forward">&rarr;</button></div></footer>
               </article>
             </div>
           </section>
 
-          <section class="kanban-column" data-column="research">
-            <header><div><i></i><h2>Research</h2><span class="column-count">2</span></div><small>LEARN FIRST</small></header>
+          <section class="kanban-column" data-column="month" data-jira-category="todo">
+            <header><div><i></i><h2>This Month</h2><span class="column-count">2</span></div><small>CURRENT FOCUS</small></header>
+            <div class="task-list" data-dropzone="month">
+              <article class="task-card" draggable="true" data-task-id="goal-priorities">
+                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>HIGH</b></div><h3>Define the first five active goals</h3><p>Select the goals allowed to appear in the wall Direction rail.</p><footer><span>Dashboard</span><div class="move-controls"><button data-move="previous" aria-label="Move Define the first five active goals backward">&larr;</button><button data-move="next" aria-label="Move Define the first five active goals forward">&rarr;</button></div></footer>
+              </article>
+              <article class="task-card" draggable="true" data-task-id="fire-formulas">
+                <div class="task-card-top"><span class="section-tag finance">Financial</span><b>HIGH</b></div><h3>Specify FIRE forecasting formulas</h3><p>Define scenario assumptions and split contributions from returns.</p><footer><span>Calculation</span><div class="move-controls"><button data-move="previous" aria-label="Move FIRE formulas backward">&larr;</button><button data-move="next" aria-label="Move FIRE formulas forward">&rarr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+
+          <section class="kanban-column" data-column="week" data-jira-category="todo">
+            <header><div><i></i><h2>This Week</h2><span class="column-count">1</span></div><small>COMMITMENT POINT</small></header>
+            <div class="task-list" data-dropzone="week">
+              <article class="task-card" draggable="true" data-task-id="section-inventory">
+                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>MED</b></div><h3>Inventory section data requirements</h3><p>Map each visible metric to source, cadence, and calculation.</p><footer><span>Weekly commitment</span><div class="move-controls"><button data-move="previous" aria-label="Move section inventory backward">&larr;</button><button data-move="next" aria-label="Move section inventory forward">&rarr;</button></div></footer>
+              </article>
+            </div>
+          </section>
+
+          <section class="kanban-column research-column" data-column="research" data-jira-category="in-progress" data-wip-limit="2">
+            <header><div><i></i><h2>Research</h2><span class="column-count">2</span></div><small>LIMIT: 2 ACTIVE</small></header>
             <div class="task-list" data-dropzone="research">
               <article class="task-card" draggable="true" data-task-id="finance-import">
                 <div class="task-card-top"><span class="section-tag finance">Financial</span><b>HIGH</b></div><h3>Validate financial account exports</h3><p>Collect sample schemas and document safe deduplication rules.</p><footer><span>Importer</span><div class="move-controls"><button data-move="previous" aria-label="Move finance import research backward">&larr;</button><button data-move="next" aria-label="Move finance import research forward">&rarr;</button></div></footer>
@@ -197,31 +218,16 @@
             </div>
           </section>
 
-          <section class="kanban-column" data-column="plan">
-            <header><div><i></i><h2>Plan</h2><span class="column-count">2</span></div><small>MAKE IT CLEAR</small></header>
-            <div class="task-list" data-dropzone="plan">
-              <article class="task-card" draggable="true" data-task-id="fire-formulas">
-                <div class="task-card-top"><span class="section-tag finance">Financial</span><b>HIGH</b></div><h3>Specify FIRE forecasting formulas</h3><p>Define scenario assumptions and split contributions from returns.</p><footer><span>Calculation</span><div class="move-controls"><button data-move="previous" aria-label="Move FIRE formulas backward">&larr;</button><button data-move="next" aria-label="Move FIRE formulas forward">&rarr;</button></div></footer>
-              </article>
-              <article class="task-card" draggable="true" data-task-id="media-rotation">
-                <div class="task-card-top"><span class="section-tag vision">Vision</span><b>MED</b></div><h3>Plan dream-board media rotation</h3><p>Choose crops, timing, transitions, and presence-mode privacy.</p><footer><span>Media</span><div class="move-controls"><button data-move="previous" aria-label="Move media rotation backward">&larr;</button><button data-move="next" aria-label="Move media rotation forward">&rarr;</button></div></footer>
-              </article>
-            </div>
-          </section>
-
-          <section class="kanban-column progress-column" data-column="progress">
-            <header><div><i></i><h2>In progress</h2><span class="column-count">2</span></div><small>LIMIT: 3</small></header>
+          <section class="kanban-column progress-column" data-column="progress" data-jira-category="in-progress" data-wip-limit="2">
+            <header><div><i></i><h2>In Progress</h2><span class="column-count">1</span></div><small>LIMIT: 2</small></header>
             <div class="task-list" data-dropzone="progress">
               <article class="task-card" draggable="true" data-task-id="dense-wall">
                 <div class="task-card-top"><span class="section-tag platform">Platform</span><b>HIGH</b></div><h3>Densify the wall dashboard</h3><p>Prioritize tracking and forecasts; remove decorative filler.</p><div class="task-progress"><i style="width:72%"></i></div><footer><span>72% complete</span><div class="move-controls"><button data-move="previous" aria-label="Move dense wall backward">&larr;</button><button data-move="next" aria-label="Move dense wall forward">&rarr;</button></div></footer>
               </article>
-              <article class="task-card" draggable="true" data-task-id="section-inventory">
-                <div class="task-card-top"><span class="section-tag platform">Platform</span><b>MED</b></div><h3>Inventory section data requirements</h3><p>Map each visible metric to source, cadence, and calculation.</p><div class="task-progress"><i style="width:88%"></i></div><footer><span>88% complete</span><div class="move-controls"><button data-move="previous" aria-label="Move section inventory backward">&larr;</button><button data-move="next" aria-label="Move section inventory forward">&rarr;</button></div></footer>
-              </article>
             </div>
           </section>
 
-          <section class="kanban-column done-column" data-column="done">
+          <section class="kanban-column done-column" data-column="done" data-jira-category="done">
             <header><div><i></i><h2>Done</h2><span class="column-count">2</span></div><small>SHIPPED</small></header>
             <div class="task-list" data-dropzone="done">
               <article class="task-card completed" draggable="true" data-task-id="privacy-boundary">
@@ -235,8 +241,8 @@
         </div>
 
         <footer class="kanban-footer">
-          <span><b>Future sync:</b> Trello lists map to stages; Trello labels map to LIFE OS sections.</span>
-          <span>Tokens remain in the private backend, never this browser.</span>
+          <span><b>Jira model:</b> Epics are life areas; Goals/Tasks are outcomes; subtasks are steps.</span>
+          <span>Jira credentials remain in the private backend, never this browser.</span>
         </footer>
       </section>
 

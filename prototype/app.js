@@ -125,8 +125,8 @@ for (let index = 0; index < 104; index += 1) {
   weekSample.appendChild(week);
 }
 
-const taskStages = ["todo", "research", "plan", "progress", "done"];
-const taskStorageKey = "northstar-kanban-v1";
+const taskStages = ["year", "month", "week", "research", "progress", "done"];
+const taskStorageKey = "northstar-jira-kanban-v2";
 const taskCards = [...document.querySelectorAll(".task-card")];
 const taskDropzones = [...document.querySelectorAll("[data-dropzone]")];
 
@@ -138,6 +138,10 @@ function renderTaskBoard() {
   document.querySelectorAll(".kanban-column").forEach((column) => {
     const count = column.querySelectorAll(".task-card").length;
     column.querySelector(".column-count").textContent = count;
+    const limit = Number(column.dataset.wipLimit || 0);
+    const exceeded = limit > 0 && count > limit;
+    column.classList.toggle("wip-exceeded", exceeded);
+    column.title = exceeded ? `WIP limit exceeded: ${count} of ${limit}` : "";
   });
 
   const doneCount = document.querySelectorAll('[data-dropzone="done"] .task-card').length;

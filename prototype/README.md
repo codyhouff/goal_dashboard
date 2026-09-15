@@ -22,7 +22,7 @@ insight stage rotates every 30 seconds and can also be changed manually.
 The Tasks view uses synthetic cards. Drag cards between stages or use the arrow
 buttons. Their positions persist in browser local storage. This is prototype
 persistence only; multi-device synchronization will require the private backend
-and a task provider adapter such as Trello.
+and a private Jira adapter.
 
 The static files can also be opened directly, but the local server more closely
 matches the eventual kiosk environment.
