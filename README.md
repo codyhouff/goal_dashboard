@@ -1,6 +1,6 @@
-# LIFE OS Goal Dashboard
+# Live Goal Dashboard
 
-LIFE OS is a private-by-design personal goal dashboard built for an always-on
+Live Goal Dashboard is a private-by-design personal goal dashboard built for an always-on
 wall display, with responsive laptop and phone views. It combines financial
 freedom forecasting, body-composition progress, sleep and recovery, active
 goals, a visual dream board, and a Kanban task workflow.
