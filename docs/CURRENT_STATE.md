@@ -12,8 +12,13 @@ Keep this file short. It is for facts an agent needs to know *right now* that do
 - The current visual prototype intentionally renders only the Financial
   Independence section on an otherwise empty canvas. Other documented sections
   will return individually after their designs are approved.
-- Prototype financial history and forecasts are synthetic. Live-data integrations must remain
-  on a private deployment and are not configured in this public repository.
+- The public prototype uses synthetic financial history. When an ignored private
+  Fidelity-derived CSV is present locally, the same prototype loads contributed
+  capital, investment growth, and a current-pace forecast from that file. This is
+  a manual local bridge, not the future private API or scheduled integration.
+- The Financial Independence forecast can switch contributions and returns
+  independently between observed values and custom assumptions; either change
+  recalculates the graph and all three FIRE ETAs in the browser.
 
 ## Known issues that affect development
 - None documented.

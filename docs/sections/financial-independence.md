@@ -22,8 +22,9 @@ net worth.
 ## Permanent wall summary
 
 - Current eligible invested assets and most recent change.
-- Lean, Medium, and Fat FIRE progress.
-- Estimated calendar year and age at Medium FIRE under the base case.
+- Estimated calendar year and age for Lean, Medium, and Fat FIRE.
+- Current net worth split into net contributions and estimated investment growth
+  (labeled `Interest` in the compact UI).
 - Compact historical-to-forecast direction.
 - Source freshness, scope, and privacy-mask state.
 
@@ -34,17 +35,24 @@ net worth.
 - The graph owns most of the section area. Evenly spaced range controls sit
   directly above it, while a compact series key and three-column fact table sit
   below it without a separate bulky toolbar.
-- Pointer and touch movement show a vertical guide, focus markers, date, age,
-  portfolio value, and available benchmark values.
+- Pointer and touch movement show a vertical guide and a compact tooltip with
+  month, year, age, and total portfolio value.
 - Historical account totals use a solid line.
 - The forward base forecast uses a distinct solid line after an explicit Today marker.
 - Optional conservative and optimistic scenarios form a range rather than pretending
   one return assumption is certain.
 - Lean, Medium, and Fat FIRE targets are horizontal milestone lines.
-- Top 10% and Top 5% benchmark thresholds are age-based curves.
+- Top 10%, Top 5%, and Top 1% benchmark thresholds are age-based curves through
+  the final available source age of 45. Curves interpolate to the visible chart
+  boundaries instead of stopping at the nearest whole-number age.
+- The vertical scale follows the highest visible portfolio forecast with modest
+  headroom; benchmarks and milestones outside that scale are clipped to the plot.
 - Additional percentiles are optional laptop controls and are not permanently shown
   on the wall.
-- The graph reports the first projected crossing year and age for Medium FIRE.
+- The graph reports the first projected crossing year and age for every FIRE tier.
+- Forecast controls can independently use the observed current-job contribution
+  pace or a custom monthly contribution, and the observed annualized return or a
+  custom annual return. Changes immediately recalculate the chart and FIRE ETAs.
 
 ## Inputs
 
@@ -93,5 +101,8 @@ as an authoritative population percentile.
 - V1: clean-slate single-section canvas, synthetic history, configurable targets,
   interactive base forecast, milestone estimate, Top 10%/Top 5% lines, range and
   comparison controls, and transparent assumptions.
-- Later: private Fidelity imports, reconciliation, scenario controls, inflation
-  toggles, contribution-versus-growth layers, and additional percentile controls.
+- Local prototype bridge: manual Fidelity imports are reconciled into a private
+  daily contribution-versus-growth series. The browser loads that derived file
+  when available and otherwise falls back to synthetic demo data.
+- Later: private API/SQLite ingestion, scheduled imports, inflation controls,
+  and additional percentile controls.

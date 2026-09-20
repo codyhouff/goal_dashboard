@@ -18,7 +18,7 @@
               <div class="quote" aria-live="polite">
                 <strong id="headline-value" class="sensitive" data-value="$248,600">$248,600</strong>
                 <span class="currency">USD</span>
-                <span id="headline-change" class="change positive">↑ 288.4% (+$185K)</span>
+                <span id="headline-change" class="change positive sensitive" data-value="↑ 288.4% (+$185K)">↑ 288.4% (+$185K)</span>
               </div>
               <div id="headline-period" class="as-of">Sep 2026 · age 32.4 · Synthetic Fidelity data</div>
             </div>
@@ -60,12 +60,41 @@
             </button>
             <div id="layers-menu" class="menu menu-wide" role="menu" hidden>
               <div class="menu-label">Reference layers</div>
-              <button type="button" role="menuitemcheckbox" data-layer="benchmarks" aria-checked="true"><span class="tick">✓</span>Top 10% and Top 5%</button>
+              <button type="button" role="menuitemcheckbox" data-layer="benchmarks" aria-checked="true"><span class="tick">✓</span>Top 10%, Top 5%, and Top 1%</button>
               <button type="button" role="menuitemcheckbox" data-layer="targets" aria-checked="true"><span class="tick">✓</span>FIRE targets</button>
+              <button type="button" role="menuitemcheckbox" data-layer="components" aria-checked="true"><span class="tick">✓</span>Contributions and growth</button>
             </div>
           </div>
 
-          <span class="assumptions">4.5% real return · $3,000/month · home excluded</span>
+        </div>
+
+        <div class="forecast-settings" aria-label="Forecast assumptions">
+          <div class="forecast-setting">
+            <span>Contributions</span>
+            <select id="contribution-mode" aria-label="Contribution forecast source">
+              <option id="contribution-observed-option" value="observed">Current job</option>
+              <option value="custom">Custom monthly</option>
+            </select>
+            <span class="forecast-observed" id="contribution-observed">—</span>
+            <span class="custom-input" id="contribution-custom-wrap" hidden>
+              <span aria-hidden="true">$</span>
+              <input id="contribution-custom" type="number" min="0" step="100" inputmode="decimal" aria-label="Custom monthly contribution">
+              <span aria-hidden="true">/mo</span>
+            </span>
+          </div>
+
+          <div class="forecast-setting">
+            <span>Returns</span>
+            <select id="return-mode" aria-label="Return forecast source">
+              <option id="return-observed-option" value="observed">Current return</option>
+              <option value="custom">Custom annual</option>
+            </select>
+            <span class="forecast-observed" id="return-observed">—</span>
+            <span class="custom-input" id="return-custom-wrap" hidden>
+              <input id="return-custom" type="number" min="-99" max="100" step="1" inputmode="decimal" aria-label="Custom annual return percentage">
+              <span aria-hidden="true">%/yr</span>
+            </span>
+          </div>
         </div>
 
         <figure class="portfolio-chart" aria-labelledby="chart-caption">
@@ -75,31 +104,28 @@
           </div>
 
           <nav class="range-controls" aria-label="Forecast range">
-            <button type="button" data-range="history">History</button>
+            <button type="button" data-range="now">Now</button>
+            <button type="button" data-range="1">1Y</button>
+            <button type="button" data-range="3">3Y</button>
             <button type="button" data-range="5">5Y</button>
             <button type="button" data-range="10">10Y</button>
-            <button type="button" data-range="15">15Y</button>
-            <button type="button" data-range="20">20Y</button>
-            <button type="button" data-range="age50">Age 50</button>
             <button class="active" type="button" data-range="max" aria-pressed="true">Max</button>
           </nav>
 
-          <div id="chart-legend" class="chart-legend" aria-label="Visible chart series"></div>
-
-          <figcaption id="chart-caption" class="overview">
-            <div class="overview-tab">Overview</div>
-            <dl class="stat-grid">
-              <div><dt id="detail-label">Date</dt><dd id="detail-date">Sep 2026</dd></div>
-              <div><dt>Age</dt><dd id="detail-age">32.4</dd></div>
-              <div><dt>Portfolio</dt><dd id="detail-portfolio" class="sensitive" data-value="$248,600">$248,600</dd></div>
-              <div><dt>Lean FIRE</dt><dd id="lean-progress">$375K · 66.3%</dd></div>
-              <div><dt>Medium FIRE</dt><dd id="medium-progress">$1.00M · 24.9%</dd></div>
-              <div><dt>Fat FIRE</dt><dd id="fat-progress">$2.00M · 12.4%</dd></div>
-              <div><dt>Top 10%*</dt><dd id="detail-p90" class="sensitive" data-value="$225,674">$225,674</dd></div>
-              <div><dt>Top 5%*</dt><dd id="detail-p95" class="sensitive" data-value="$382,428">$382,428</dd></div>
-              <div><dt>Medium FIRE ETA</dt><dd id="medium-fire-arrival">2038 · age 44.6</dd></div>
-            </dl>
-            <p class="method-note">Synthetic demo data · benchmark methodology pending · primary-residence equity excluded</p>
+          <figcaption id="chart-caption" class="chart-footer">
+            <div class="stat-groups">
+              <dl class="stat-list" aria-label="FIRE estimates">
+                <div><dt>Lean FIRE ETA</dt><dd id="lean-fire-arrival">—</dd></div>
+                <div><dt>Medium FIRE ETA</dt><dd id="medium-fire-arrival">—</dd></div>
+                <div><dt>Fat FIRE ETA</dt><dd id="fat-fire-arrival">—</dd></div>
+              </dl>
+              <dl class="stat-list" aria-label="Portfolio components">
+                <div><dt>Net Worth</dt><dd id="detail-portfolio" class="sensitive" data-value="$248,600">$248,600</dd></div>
+                <div><dt>Interest</dt><dd id="detail-growth" class="sensitive" data-value="—">—</dd></div>
+                <div><dt>Contributions</dt><dd id="detail-contributions" class="sensitive" data-value="—">—</dd></div>
+              </dl>
+            </div>
+            <div id="chart-legend" class="chart-legend" aria-label="Visible chart series"></div>
           </figcaption>
         </figure>
       </section>

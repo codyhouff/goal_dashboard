@@ -11,6 +11,7 @@ Use the narrowest verification that gives adequate confidence for the risk of th
 | Prototype markup | `python -m html.parser prototype/index.html` | Prototype edits |
 | Prototype script syntax | `node --check prototype/app.js` | Prototype script edits |
 | Prototype smoke server | `python -m http.server 3000` then open `/prototype/` | Visual review; serves public benchmark data alongside the prototype |
+| Fidelity contribution/growth processor | `powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/process-fidelity-net-worth.ps1` | Private Fidelity import or processor changes |
 
 Production checks remain unconfigured until the production stack is selected.
 

@@ -14,6 +14,8 @@ authenticated devices can use it over the home network.
 - `docs/sections/` — section-level display, calculation, source, and privacy contracts.
 - `data/benchmarks/` — versioned non-personal reference datasets with provenance
   and quality metadata; never private observations or configuration.
+- `scripts/` — reusable import and reconciliation utilities that contain no
+  private observations or credentials.
 
 ## Major components
 | Component | Responsibility | Key paths |
@@ -21,7 +23,7 @@ authenticated devices can use it over the home network.
 | Prototype frontend | Validate information hierarchy and responsive layout | `prototype/` |
 | Production frontend | Future responsive web client | Not selected |
 | Private API | Future authenticated, read-oriented dashboard API | Not selected |
-| Importers | Future scheduled source adapters and normalization | Not selected |
+| Importers | Initial manual Fidelity reconciliation; future scheduled adapters | `scripts/process-fidelity-net-worth.ps1` |
 | Data store | Future local SQLite database on internal SSD | Runtime only |
 
 ## Data / control flow

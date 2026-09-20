@@ -12,10 +12,13 @@
   --dotted: #5f6368;
   --positive: #81c995;
   --positive-fill: 129, 201, 149;
+  --contribution: #8ab4f8;
+  --contribution-fill: 138, 180, 248;
   --blue: #8ab4f8;
   --blue-fill: rgba(138, 180, 248, 0.12);
   --orange: #fdd663;
   --purple: #c58af9;
+  --pink: #ff8bcb;
   --conservative: #fdd663;
   --optimistic: #c58af9;
   --font: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
@@ -179,11 +182,71 @@ h1 {
   font-size: 10px;
 }
 
-.assumptions {
-  margin-left: auto;
+.forecast-settings {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 22px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.forecast-setting {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.forecast-setting > span:first-child {
+  color: var(--dim);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.forecast-setting select,
+.forecast-setting input {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.forecast-setting select {
+  max-width: 125px;
+  padding: 5px 22px 5px 7px;
+}
+
+.forecast-setting input {
+  width: 78px;
+  padding: 5px 6px;
+}
+
+.forecast-setting select:focus-visible,
+.forecast-setting input:focus-visible {
+  border-color: var(--blue);
+}
+
+.forecast-observed {
+  overflow: hidden;
   color: var(--faint);
   font-size: 11.5px;
+  text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.custom-input {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--dim);
+  font-size: 11.5px;
 }
 
 .menu {
@@ -275,8 +338,8 @@ h1 {
 .hover-card {
   position: absolute;
   z-index: 3;
-  min-width: 176px;
-  max-width: 230px;
+  min-width: 148px;
+  max-width: 190px;
   padding: 8px 11px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -339,12 +402,13 @@ h1 {
 }
 
 .chart-legend {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  align-content: start;
+  justify-content: end;
   gap: 7px 16px;
-  min-height: 29px;
   color: var(--dim);
-  font-size: 11.5px;
+  font-size: 11px;
 }
 
 .chart-legend span {
@@ -353,45 +417,42 @@ h1 {
   gap: 6px;
 }
 
-.chart-legend i,
-.hover-card i {
+.chart-legend i {
   display: inline-block;
   width: 8px;
   height: 8px;
   border-radius: 50%;
 }
 
-.overview {
+.chart-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 30px;
   margin-top: 3px;
+  padding: 10px 4px 0;
 }
 
-.overview-tab {
-  width: max-content;
-  padding: 9px 4px 8px;
-  border-bottom: 3px solid var(--blue);
-  color: var(--blue);
-  font-size: 13px;
-}
-
-.stat-grid {
+.stat-groups {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0 34px;
+  grid-template-columns: repeat(2, minmax(0, 210px));
+  gap: 30px;
+}
+
+.stat-list {
   margin: 0;
-  padding: 11px 4px 0;
 }
 
-.stat-grid > div {
+.stat-list > div {
   display: grid;
-  grid-template-columns: minmax(98px, 1fr) auto;
+  grid-template-columns: minmax(94px, 1fr) auto;
   align-items: baseline;
   gap: 10px;
   min-width: 0;
-  padding: 4px 0;
+  padding: 3px 0;
 }
 
-.stat-grid dt,
-.stat-grid dd {
+.stat-list dt,
+.stat-list dd {
   overflow: hidden;
   margin: 0;
   font-size: 12.5px;
@@ -399,20 +460,12 @@ h1 {
   white-space: nowrap;
 }
 
-.stat-grid dt {
+.stat-list dt {
   color: var(--dim);
 }
 
-.stat-grid dd {
+.stat-list dd {
   text-align: right;
-}
-
-.method-note {
-  margin: 11px 4px 0;
-  padding-top: 9px;
-  border-top: 1px solid var(--line);
-  color: var(--faint);
-  font-size: 10.5px;
 }
 
 .masked {
@@ -486,9 +539,19 @@ h1 {
     font-size: 12px;
   }
 
-  .toolbar-button svg,
-  .assumptions {
+  .toolbar-button svg {
     display: none;
+  }
+
+  .forecast-settings {
+    grid-template-columns: 1fr;
+    gap: 7px;
+    padding: 9px 0;
+  }
+
+  .forecast-setting {
+    grid-template-columns: 82px 112px minmax(0, 1fr);
+    gap: 6px;
   }
 
   .menu {
@@ -521,13 +584,21 @@ h1 {
     padding: 7px 11px;
   }
 
-  .stat-grid {
+  .chart-footer {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 12px;
+    padding-right: 0;
+    padding-left: 0;
   }
 
-  .stat-grid > div {
-    grid-template-columns: 1fr auto;
+  .stat-groups {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .chart-legend {
+    grid-template-columns: repeat(2, max-content);
+    justify-content: start;
   }
 }
 
