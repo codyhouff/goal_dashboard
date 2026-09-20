@@ -10,7 +10,10 @@ authenticated devices can use it over the home network.
 
 ## Repository map
 - `prototype/` — dependency-free visual prototype using synthetic data.
-- `docs/` — product, architecture, testing, and task records.
+- `docs/` — product, architecture, testing, task, and section records.
+- `docs/sections/` — section-level display, calculation, source, and privacy contracts.
+- `data/benchmarks/` — versioned non-personal reference datasets with provenance
+  and quality metadata; never private observations or configuration.
 
 ## Major components
 | Component | Responsibility | Key paths |

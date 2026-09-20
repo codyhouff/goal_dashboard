@@ -23,7 +23,7 @@ not primary product tabs.
 | --- | --- | --- |
 | Vision rail | 3x3 dream-board photos or short muted clips | 28-32% |
 | Direction rail | Three to five highest-priority active goals/tasks | 8-10% |
-| Financial freedom | Invested assets, tier progress, scenario forecast, savings/spend pulse | 22-26% |
+| Financial independence | Invested assets, tier progress, scenario forecast, savings/spend pulse | 22-26% |
 | Body + recovery | Body composition and sleep/recovery summaries | 18-22% |
 | Insight stage | One rotating detailed chart at a time | Remaining space |
 | Source rail | Freshness, import failures, privacy/demo state | One compact footer row |
@@ -34,12 +34,17 @@ Vision, or it belongs in a detail view.
 
 ## Section inventory
 
-### 1. Financial freedom
+### 1. Financial Independence
+
+The primary wealth series excludes equity in the owner's primary residence.
+Age-based benchmark overlays and their source-quality rules are specified in
+[`docs/sections/financial-independence.md`](../docs/sections/financial-independence.md).
 
 | Item | Display | Required inputs | Derived output |
 | --- | --- | --- | --- |
 | Invested assets | Large current total and monthly change | Dated account balances; account type; include/exclude rule | Eligible invested-assets total |
-| FIRE tiers | Progress, amount remaining, estimated date/age/time | Private tier names/targets; current assets; forecast assumptions | Completion percentage and estimated crossing date |
+| FIRE tiers | Progress, amount remaining, estimated date/age/time | Private Lean/Medium/Fat targets; current assets; forecast assumptions | Completion percentage and estimated crossing date |
+| Age benchmarks | Top 10% and Top 5% reference curves on the net-worth graph | Versioned age-percentile dataset; compatible wealth definition; private derived age | Current band, next threshold, and projected crossings |
 | Forecast | Conservative/base/optimistic curves and milestone lines | Starting assets; contribution schedule; nominal return; inflation; fees | Monthly portfolio paths |
 | Capital layers | Contributions versus investment growth | Historical deposits/withdrawals and balances | Cumulative contributed capital and residual growth |
 | Savings rate | Current month plus 3/6/12-month rolling values | After-tax income; transfers classified as saving; spending | After-tax savings percentages |
@@ -86,7 +91,7 @@ flag. The Direction rail can pull the highest-priority active cards from Tasks.
 ### 5. Dream board
 
 The nine slots are physique, lifestyle, travel, face/style, home, career,
-friends/social, experiences, and financial freedom. Each media record needs a
+friends/social, experiences, and financial independence. Each media record needs a
 private file path, section, caption, media type, duration, crop/focal point,
 active dates, rotation weight, and wall-visibility flag. Videos are muted and no
 longer than ten seconds. Personal media stays in private storage, never GitHub.
@@ -108,7 +113,7 @@ visual references, not objective predictions.
 
 Needs birth date in private configuration plus milestone title, date/range,
 category, certainty, and display color. Education, career, relationships,
-financial freedom, and experiences are factual milestones. AGI markers are
+financial independence, and experiences are factual milestones. AGI markers are
 separate speculative scenarios with early/median/late ranges.
 
 ### 9. LIFE score / self-actualization

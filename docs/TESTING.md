@@ -10,7 +10,7 @@ Use the narrowest verification that gives adequate confidence for the risk of th
 | --- | --- | --- |
 | Prototype markup | `python -m html.parser prototype/index.html` | Prototype edits |
 | Prototype script syntax | `node --check prototype/app.js` | Prototype script edits |
-| Prototype smoke server | `python -m http.server 3000 --directory prototype` | Visual review |
+| Prototype smoke server | `python -m http.server 3000` then open `/prototype/` | Visual review; serves public benchmark data alongside the prototype |
 
 Production checks remain unconfigured until the production stack is selected.
 

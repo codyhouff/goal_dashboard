@@ -9,7 +9,7 @@ web application is intended for a wall display, laptop, and phone.
 One individual who owns and controls the underlying data and home server.
 
 ## Core outcomes
-- Answer five questions at a glance: financial freedom, body progress,
+- Answer five questions at a glance: financial independence, body progress,
   recovery, current direction, and future vision.
 - Keep FIRE, physique, recovery, active goals, and a 3x3 vision board permanently
   visible while deeper analytics rotate through one secondary stage.

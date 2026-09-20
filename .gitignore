@@ -15,7 +15,9 @@ Thumbs.db
 
 # LIFE OS private configuration and runtime data
 private/
-data/
+data/*
+!data/benchmarks/
+!data/benchmarks/**
 runtime/
 imports/
 backups/
@@ -49,6 +51,7 @@ config/local.*
 # Personal media and backup archives belong under ignored private paths
 *.bak
 *.backup
+/Net-Worth-Projection.zip
 
 # Logs / temp
 *.log
