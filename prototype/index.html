@@ -9,95 +9,51 @@
   </head>
   <body>
     <main class="dashboard-canvas">
-      <section class="financial-independence" aria-labelledby="fi-title">
-        <header class="fi-header">
-          <div class="section-label">Financial Independence</div>
-          <div class="headline-row">
-            <div>
-              <h1 id="fi-title">Invested assets</h1>
-              <div class="quote" aria-live="polite">
-                <strong id="headline-value" class="sensitive" data-value="$248,600">$248,600</strong>
-                <span class="currency">USD</span>
-                <span id="headline-change" class="change positive sensitive" data-value="↑ 288.4% (+$185K)">↑ 288.4% (+$185K)</span>
-              </div>
-              <div id="headline-period" class="as-of">Sep 2026 · age 32.4 · Synthetic Fidelity data</div>
-            </div>
-            <button id="privacy-toggle" class="primary-action" type="button" aria-pressed="false">Hide values</button>
-          </div>
-        </header>
+      <section class="financial-independence" aria-label="Financial Independence">
 
-        <div class="chart-toolbar" aria-label="Chart controls">
-          <div class="dropdown">
-            <button id="style-button" class="toolbar-button" type="button" aria-expanded="false" aria-haspopup="true">
-              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 17l5-6 4 4 5-7 4 5v4H3zM3 20h18"/></svg>
-              <span id="style-label">Area</span>
-              <span class="caret" aria-hidden="true">▾</span>
-            </button>
-            <div id="style-menu" class="menu" role="menu" hidden>
-              <button type="button" role="menuitemradio" data-style="area" aria-checked="true"><span class="tick">✓</span>Area</button>
-              <button type="button" role="menuitemradio" data-style="line" aria-checked="false"><span class="tick"></span>Line</button>
+        <div class="financial-topbar">
+          <div class="forecast-settings" aria-label="Forecast assumptions">
+            <div class="forecast-setting">
+              <select id="contribution-mode" aria-label="Contribution forecast source">
+                <option id="contribution-observed-option" value="observed">Current Contributions</option>
+                <option value="custom">Custom Contributions</option>
+              </select>
+              <span class="forecast-observed" id="contribution-observed">—</span>
+              <span class="custom-input" id="contribution-custom-wrap" hidden>
+                <span aria-hidden="true">$</span>
+                <input id="contribution-custom" type="number" min="0" step="100" inputmode="decimal" aria-label="Custom monthly contribution">
+                <span aria-hidden="true">/mo</span>
+              </span>
             </div>
-          </div>
 
-          <div class="dropdown">
-            <button id="compare-button" class="toolbar-button" type="button" aria-expanded="false" aria-haspopup="true">
-              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M3 16l4-5 4 3 5-7 5 5M3 20h18"/></svg>
-              Compare
-              <span class="caret" aria-hidden="true">▾</span>
-            </button>
-            <div id="compare-menu" class="menu" role="menu" hidden>
-              <div class="menu-label">Forecast scenarios</div>
-              <button type="button" role="menuitemcheckbox" data-layer="conservative" aria-checked="false"><span class="tick"></span><i class="swatch conservative"></i>Conservative</button>
-              <button type="button" role="menuitemcheckbox" data-layer="optimistic" aria-checked="false"><span class="tick"></span><i class="swatch optimistic"></i>Optimistic</button>
+            <div class="forecast-setting">
+              <select id="return-mode" aria-label="Return forecast source">
+                <option id="return-observed-option" value="observed">Current Returns</option>
+                <option value="custom">Custom Returns</option>
+              </select>
+              <span class="forecast-observed" id="return-observed">—</span>
+              <span class="custom-input" id="return-custom-wrap" hidden>
+                <input id="return-custom" type="number" min="-99" max="100" step="1" inputmode="decimal" aria-label="Custom annual return percentage">
+                <span aria-hidden="true">%/yr</span>
+              </span>
             </div>
           </div>
 
-          <div class="dropdown">
-            <button id="layers-button" class="toolbar-button" type="button" aria-expanded="false" aria-haspopup="true">
-              <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 18V9m5 9V5m5 13v-7m5 7v-4"/></svg>
-              Indicators
-              <span class="caret" aria-hidden="true">▾</span>
-            </button>
-            <div id="layers-menu" class="menu menu-wide" role="menu" hidden>
-              <div class="menu-label">Reference layers</div>
-              <button type="button" role="menuitemcheckbox" data-layer="benchmarks" aria-checked="true"><span class="tick">✓</span>Top 10%, Top 5%, and Top 1%</button>
-              <button type="button" role="menuitemcheckbox" data-layer="targets" aria-checked="true"><span class="tick">✓</span>FIRE targets</button>
-              <button type="button" role="menuitemcheckbox" data-layer="components" aria-checked="true"><span class="tick">✓</span>Contributions and growth</button>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="forecast-settings" aria-label="Forecast assumptions">
-          <div class="forecast-setting">
-            <span>Contributions</span>
-            <select id="contribution-mode" aria-label="Contribution forecast source">
-              <option id="contribution-observed-option" value="observed">Current job</option>
-              <option value="custom">Custom monthly</option>
-            </select>
-            <span class="forecast-observed" id="contribution-observed">—</span>
-            <span class="custom-input" id="contribution-custom-wrap" hidden>
-              <span aria-hidden="true">$</span>
-              <input id="contribution-custom" type="number" min="0" step="100" inputmode="decimal" aria-label="Custom monthly contribution">
-              <span aria-hidden="true">/mo</span>
-            </span>
-          </div>
-
-          <div class="forecast-setting">
-            <span>Returns</span>
-            <select id="return-mode" aria-label="Return forecast source">
-              <option id="return-observed-option" value="observed">Current return</option>
-              <option value="custom">Custom annual</option>
-            </select>
-            <span class="forecast-observed" id="return-observed">—</span>
-            <span class="custom-input" id="return-custom-wrap" hidden>
-              <input id="return-custom" type="number" min="-99" max="100" step="1" inputmode="decimal" aria-label="Custom annual return percentage">
-              <span aria-hidden="true">%/yr</span>
-            </span>
+          <div class="stat-groups">
+            <dl class="stat-list" aria-label="FIRE estimates">
+              <div><dt>Lean FIRE</dt><dd id="lean-fire-arrival">—</dd></div>
+              <div><dt>Medium FIRE</dt><dd id="medium-fire-arrival">—</dd></div>
+              <div><dt>Fat FIRE</dt><dd id="fat-fire-arrival">—</dd></div>
+            </dl>
+            <dl class="stat-list" aria-label="Portfolio components">
+              <div><dt>Net Worth</dt><dd id="detail-portfolio">$248,600</dd></div>
+              <div><dt>Interest</dt><dd id="detail-growth">—</dd></div>
+              <div><dt>Contributions</dt><dd id="detail-contributions">—</dd></div>
+            </dl>
           </div>
         </div>
 
-        <figure class="portfolio-chart" aria-labelledby="chart-caption">
+        <figure class="portfolio-chart" aria-label="Financial independence history and forecast">
           <div class="canvas-box" id="chart-frame">
             <canvas id="fi-chart" tabindex="0" role="img" aria-label="Historical and projected invested assets with FIRE targets and age-based net-worth benchmarks"></canvas>
             <div id="hover-card" class="hover-card" hidden></div>
@@ -111,22 +67,6 @@
             <button type="button" data-range="10">10Y</button>
             <button class="active" type="button" data-range="max" aria-pressed="true">Max</button>
           </nav>
-
-          <figcaption id="chart-caption" class="chart-footer">
-            <div class="stat-groups">
-              <dl class="stat-list" aria-label="FIRE estimates">
-                <div><dt>Lean FIRE ETA</dt><dd id="lean-fire-arrival">—</dd></div>
-                <div><dt>Medium FIRE ETA</dt><dd id="medium-fire-arrival">—</dd></div>
-                <div><dt>Fat FIRE ETA</dt><dd id="fat-fire-arrival">—</dd></div>
-              </dl>
-              <dl class="stat-list" aria-label="Portfolio components">
-                <div><dt>Net Worth</dt><dd id="detail-portfolio" class="sensitive" data-value="$248,600">$248,600</dd></div>
-                <div><dt>Interest</dt><dd id="detail-growth" class="sensitive" data-value="—">—</dd></div>
-                <div><dt>Contributions</dt><dd id="detail-contributions" class="sensitive" data-value="—">—</dd></div>
-              </dl>
-            </div>
-            <div id="chart-legend" class="chart-legend" aria-label="Visible chart series"></div>
-          </figcaption>
         </figure>
       </section>
     </main>

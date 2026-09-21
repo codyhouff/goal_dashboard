@@ -59,9 +59,6 @@ const financialDemo = {
     optimistic: 0.07,
   },
   dataMode: "demo",
-  sourceLabel: "Synthetic Fidelity data",
-  performanceStart: null,
-  forecastStart: null,
   history: buildSyntheticHistory(),
 };
 
@@ -70,7 +67,6 @@ const state = {
   forecasts: {},
   geometry: null,
   hoverAge: null,
-  masked: false,
   range: "max",
   style: "area",
   layers: {
@@ -94,7 +90,6 @@ const forecastSettings = {
 const chart = document.querySelector("#fi-chart");
 const chartFrame = document.querySelector("#chart-frame");
 const hoverCard = document.querySelector("#hover-card");
-const privacyToggle = document.querySelector("#privacy-toggle");
 
 function cssValue(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
@@ -197,9 +192,6 @@ async function loadPrivateFinancialData() {
     forecastSettings.observedAnnualReturn = financialDemo.scenarioRates.base;
     forecastSettings.customMonthlyContribution = Math.round(financialDemo.monthlyContribution / 100) * 100;
     financialDemo.dataMode = "private";
-    financialDemo.sourceLabel = "Private Fidelity data";
-    financialDemo.performanceStart = metadata.performance_start;
-    financialDemo.forecastStart = metadata.forecast_contribution_start;
     state.layers.conservative = false;
     state.layers.optimistic = false;
     state.range = "5";
@@ -208,7 +200,6 @@ async function loadPrivateFinancialData() {
       button.classList.toggle("active", active);
       button.setAttribute("aria-pressed", String(active));
     });
-    document.querySelector("#compare-button").closest(".dropdown").hidden = true;
     return true;
   } catch {
     return false;
@@ -243,37 +234,24 @@ function projectBalance(annualReturn) {
   return points;
 }
 
-function monthYearLabel(date, fallback) {
-  if (!date) return fallback;
-  return new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric", timeZone: "UTC" })
-    .format(new Date(`${date}T00:00:00Z`));
-}
-
 function syncForecastControls() {
   const contributionInput = document.querySelector("#contribution-custom");
   const returnInput = document.querySelector("#return-custom");
   const contributionCustom = forecastSettings.contributionMode === "custom";
   const returnCustom = forecastSettings.returnMode === "custom";
-  const returnStart = monthYearLabel(financialDemo.performanceStart, financialDemo.dataMode === "private" ? "available history" : "demo period");
 
   document.querySelector("#contribution-mode").value = forecastSettings.contributionMode;
   document.querySelector("#return-mode").value = forecastSettings.returnMode;
-  document.querySelector("#contribution-observed-option").textContent = financialDemo.dataMode === "private" ? "Current job" : "Demo pace";
-  document.querySelector("#return-observed-option").textContent = financialDemo.dataMode === "private" ? "Current return" : "Demo return";
+  document.querySelector("#contribution-observed-option").textContent = financialDemo.dataMode === "private" ? "Current Contributions" : "Demo Contributions";
+  document.querySelector("#return-observed-option").textContent = financialDemo.dataMode === "private" ? "Current Returns" : "Demo Returns";
   document.querySelector("#contribution-custom-wrap").hidden = !contributionCustom;
   document.querySelector("#return-custom-wrap").hidden = !returnCustom;
   document.querySelector("#contribution-observed").hidden = contributionCustom;
   document.querySelector("#return-observed").hidden = returnCustom;
-  document.querySelector("#contribution-observed").textContent = state.masked
-    ? "••••••"
-    : `${formatCurrency(forecastSettings.observedMonthlyContribution)}/mo avg`;
-  document.querySelector("#return-observed").textContent = state.masked
-    ? "••••••"
-    : `${formatPercent(forecastSettings.observedAnnualReturn * 100)} annualized since ${returnStart}`;
+  document.querySelector("#contribution-observed").textContent = `${formatCurrency(forecastSettings.observedMonthlyContribution)}/mo avg`;
+  document.querySelector("#return-observed").textContent = `${formatPercent(forecastSettings.observedAnnualReturn * 100)}/y`;
   contributionInput.value = String(Math.round(forecastSettings.customMonthlyContribution));
   returnInput.value = String(Number((forecastSettings.customAnnualReturn * 100).toFixed(2)));
-  contributionInput.type = state.masked ? "password" : "number";
-  returnInput.type = state.masked ? "password" : "number";
 }
 
 function rebuildForecasts() {
@@ -347,21 +325,6 @@ function calendarLabel(decimalYear, includeMonth = true) {
   const month = Math.min(11, Math.max(0, Math.floor((decimalYear - year) * 12)));
   const monthName = new Intl.DateTimeFormat("en-US", { month: "short" }).format(new Date(2024, month, 1));
   return `${monthName} ${year}`;
-}
-
-function dateLabelAtAge(age) {
-  if (age <= financialDemo.currentAge && financialDemo.history[0].date) {
-    const nearest = financialDemo.history.reduce((best, point) => (
-      Math.abs(point.age - age) < Math.abs(best.age - age) ? point : best
-    ), financialDemo.history[0]);
-    return new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      day: "numeric",
-      year: "numeric",
-      timeZone: "UTC",
-    }).format(new Date(`${nearest.date}T00:00:00Z`));
-  }
-  return calendarLabel(yearAtAge(age));
 }
 
 function monthLabelAtAge(age) {
@@ -561,7 +524,7 @@ function drawChart() {
     context.moveTo(margin.left, py);
     context.lineTo(width - margin.right, py);
     context.stroke();
-    if (!state.masked) context.fillText(formatAxisCurrency(value), margin.left - 9, py);
+    context.fillText(formatAxisCurrency(value), margin.left - 9, py);
   }
 
   if (state.layers.targets) {
@@ -698,25 +661,7 @@ function drawCrosshair(context, age, colors) {
 }
 
 function setSensitiveValue(element, value) {
-  element.dataset.value = value;
-  element.textContent = state.masked ? "••••••" : value;
-  element.classList.toggle("masked", state.masked);
-}
-
-function updateHeadline(age = financialDemo.currentAge, hovering = false) {
-  const value = portfolioValue(age);
-  if (value == null) return;
-  const baseline = financialDemo.history[0].value;
-  const difference = value - baseline;
-  const percentage = baseline ? (difference / baseline) * 100 : 0;
-  setSensitiveValue(document.querySelector("#headline-value"), formatCurrency(value));
-  setSensitiveValue(
-    document.querySelector("#headline-change"),
-    `${difference >= 0 ? "↑" : "↓"} ${Math.abs(percentage).toFixed(1)}% (${difference >= 0 ? "+" : "−"}${formatCurrency(Math.abs(difference), true)})`,
-  );
-  document.querySelector("#headline-period").textContent = hovering
-    ? `${dateLabelAtAge(age)} · age ${age.toFixed(1)} · since opening principal`
-    : `${dateLabelAtAge(financialDemo.currentAge)} · age ${financialDemo.currentAge.toFixed(1)} · ${financialDemo.sourceLabel}`;
+  element.textContent = value;
 }
 
 function updateDetails(age = financialDemo.currentAge) {
@@ -735,34 +680,10 @@ function updateArrival() {
   for (const target of financialDemo.targets) {
     const crossing = findTargetCrossing(target.value);
     const element = document.querySelector(`#${target.id}-fire-arrival`);
-    element.dataset.value = crossing
-      ? `${Math.floor(yearAtAge(crossing.age))} · age ${crossing.age.toFixed(1)}`
-      : "Beyond age 55";
-    element.textContent = state.masked ? "••••••" : element.dataset.value;
-    element.classList.toggle("masked", state.masked);
+    element.textContent = crossing
+      ? `${crossing.age.toFixed(1)}y · ${Math.floor(yearAtAge(crossing.age))}`
+      : ">55y";
   }
-}
-
-function updateLegend() {
-  const items = [
-    ["var(--positive)", "Total assets"],
-    ["var(--positive)", financialDemo.dataMode === "private" ? "Current-pace forecast" : "Base forecast"],
-  ];
-  if (state.layers.components) {
-    items.push(["var(--contribution)", "Contributed capital"]);
-    items.push(["rgba(var(--positive-fill), .7)", "Investment growth"]);
-  }
-  if (state.layers.conservative) items.push(["var(--conservative)", "Conservative"]);
-  if (state.layers.optimistic) items.push(["var(--optimistic)", "Optimistic"]);
-  if (state.layers.benchmarks) {
-    items.push(["var(--orange)", "Top 10%"]);
-    items.push(["var(--purple)", "Top 5%"]);
-    items.push(["var(--pink)", "Top 1%"]);
-  }
-  if (state.layers.targets) items.push(["var(--blue)", "FIRE target"]);
-  document.querySelector("#chart-legend").innerHTML = items
-    .map(([color, label]) => `<span><i style="background:${color}"></i>${label}</span>`)
-    .join("");
 }
 
 function showTooltip(age) {
@@ -770,7 +691,7 @@ function showTooltip(age) {
   if (value == null || !state.geometry) return;
   hoverCard.innerHTML = `
     <div class="tooltip-date">${monthLabelAtAge(age)} · age ${age.toFixed(1)}</div>
-    <div class="tooltip-value">${state.masked ? "••••••" : formatCurrency(value)}</div>
+    <div class="tooltip-value">${formatCurrency(value)}</div>
   `;
   hoverCard.hidden = false;
   const chartWidth = chartFrame.clientWidth;
@@ -785,8 +706,9 @@ function showTooltip(age) {
 function ageFromPointer(clientX) {
   if (!state.geometry) return null;
   const rect = chart.getBoundingClientRect();
-  const pointerX = clientX - rect.left;
   const { margin, width, minimumAge, maximumAge } = state.geometry;
+  const renderedScale = rect.width > 0 ? width / rect.width : 1;
+  const pointerX = (clientX - rect.left) * renderedScale;
   if (pointerX < margin.left - 24 || pointerX > width - margin.right + 24) return null;
   const progress = Math.max(0, Math.min(1, (pointerX - margin.left) / (width - margin.left - margin.right)));
   return minimumAge + progress * (maximumAge - minimumAge);
@@ -796,7 +718,6 @@ function inspectAge(age) {
   if (age == null || portfolioValue(age) == null) return;
   state.hoverAge = age;
   drawChart();
-  updateHeadline(age, true);
   updateDetails(age, true);
   showTooltip(age);
 }
@@ -805,74 +726,16 @@ function resetInspection() {
   state.hoverAge = null;
   hoverCard.hidden = true;
   drawChart();
-  updateHeadline();
   updateDetails();
 }
 
 function renderAll() {
   drawChart();
-  updateLegend();
-  updateHeadline(state.hoverAge ?? financialDemo.currentAge, state.hoverAge != null);
   updateDetails(state.hoverAge ?? financialDemo.currentAge, state.hoverAge != null);
   updateArrival();
   syncForecastControls();
   if (state.hoverAge != null) showTooltip(state.hoverAge);
 }
-
-function closeMenus(except = null) {
-  for (const [buttonId, menuId] of [
-    ["style-button", "style-menu"],
-    ["compare-button", "compare-menu"],
-    ["layers-button", "layers-menu"],
-  ]) {
-    if (menuId === except) continue;
-    document.querySelector(`#${menuId}`).hidden = true;
-    document.querySelector(`#${buttonId}`).setAttribute("aria-expanded", "false");
-  }
-}
-
-for (const [buttonId, menuId] of [
-  ["style-button", "style-menu"],
-  ["compare-button", "compare-menu"],
-  ["layers-button", "layers-menu"],
-]) {
-  const button = document.querySelector(`#${buttonId}`);
-  const menu = document.querySelector(`#${menuId}`);
-  button.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const opening = menu.hidden;
-    closeMenus(opening ? menuId : null);
-    menu.hidden = !opening;
-    button.setAttribute("aria-expanded", String(opening));
-  });
-}
-
-document.addEventListener("click", (event) => {
-  const styleButton = event.target.closest("[data-style]");
-  if (styleButton) {
-    state.style = styleButton.dataset.style;
-    document.querySelector("#style-label").textContent = state.style === "area" ? "Area" : "Line";
-    document.querySelectorAll("[data-style]").forEach((candidate) => {
-      const active = candidate === styleButton;
-      candidate.setAttribute("aria-checked", String(active));
-      candidate.querySelector(".tick").textContent = active ? "✓" : "";
-    });
-    renderAll();
-    closeMenus();
-    return;
-  }
-
-  const layerButton = event.target.closest("[data-layer]");
-  if (layerButton) {
-    const layer = layerButton.dataset.layer;
-    state.layers[layer] = !state.layers[layer];
-    layerButton.setAttribute("aria-checked", String(state.layers[layer]));
-    layerButton.querySelector(".tick").textContent = state.layers[layer] ? "✓" : "";
-    renderAll();
-    return;
-  }
-  if (!event.target.closest(".dropdown")) closeMenus();
-});
 
 document.querySelectorAll("[data-range]").forEach((button) => {
   button.setAttribute("aria-pressed", String(button.classList.contains("active")));
@@ -919,17 +782,6 @@ document.querySelector("#return-custom").addEventListener("input", (event) => {
   resetInspection();
 });
 
-privacyToggle.addEventListener("click", () => {
-  state.masked = !state.masked;
-  privacyToggle.setAttribute("aria-pressed", String(state.masked));
-  privacyToggle.textContent = state.masked ? "Show values" : "Hide values";
-  document.querySelectorAll(".sensitive").forEach((element) => {
-    element.textContent = state.masked ? "••••••" : element.dataset.value;
-    element.classList.toggle("masked", state.masked);
-  });
-  renderAll();
-});
-
 chart.addEventListener("pointermove", (event) => inspectAge(ageFromPointer(event.clientX)));
 chart.addEventListener("pointerdown", (event) => {
   chart.setPointerCapture(event.pointerId);
@@ -972,8 +824,6 @@ async function initialize() {
     state.benchmark = await response.json();
   } catch (error) {
     state.layers.benchmarks = false;
-    document.querySelector('[data-layer="benchmarks"]').setAttribute("aria-checked", "false");
-    document.querySelector('[data-layer="benchmarks"] .tick').textContent = "";
     console.warn("Financial benchmark unavailable", error);
   }
   renderAll();

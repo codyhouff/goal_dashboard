@@ -1,7 +1,7 @@
 # Financial Independence visual prototype
 
 This dependency-free prototype isolates the Financial Independence section so
-its information density, graph behavior, responsive layout, and privacy control
+its information density, graph behavior, and responsive layout
 can be evaluated before other dashboard sections return. It uses synthetic data
 in the public repository and can load an ignored private Fidelity-derived series
 when running locally.
@@ -50,18 +50,11 @@ with a private review CSV instead of guessing when a transaction is ambiguous.
   press Escape to return to the current snapshot.
 - Use `Now`, `1Y`, `3Y`, `5Y`, `10Y`, and `Max` to change the visible projection
   horizon.
-- Use **Area** to switch the portfolio fill on or off, **Compare** to show
-  conservative and optimistic forecasts, and **Indicators** to toggle age
-  benchmarks, FIRE targets, and contribution/growth layers.
 - Use **Contributions** to forecast with the observed current-job monthly average
   or a custom monthly amount. Use **Returns** to forecast with the observed
   annualized return or a custom annual percentage; the return input steps by one
   percentage point. Either change redraws the forecast and recalculates all
   three FIRE dates immediately.
-- Use the compact legend to distinguish history, forecast, benchmark, scenario,
-  and FIRE-target lines.
-- Use **Hide values** to mask headline, forecast-setting, FIRE-date, and summary
-  financial values.
 
 The graph is rendered on a responsive canvas adapted from the user-supplied
 Google Finance-style prototype. No charting dependency or external font request

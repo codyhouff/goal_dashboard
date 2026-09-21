@@ -21,26 +21,26 @@ net worth.
 
 ## Permanent wall summary
 
-- Current eligible invested assets and most recent change.
 - Estimated calendar year and age for Lean, Medium, and Fat FIRE.
 - Current net worth split into net contributions and estimated investment growth
   (labeled `Interest` in the compact UI).
 - Compact historical-to-forecast direction.
-- Source freshness, scope, and privacy-mask state.
 
 ## Detailed forecast graph
 
 - Use a flat, light, high-density presentation inspired by the useful interaction
   patterns of Google Finance; do not copy branding or proprietary assets.
-- The graph owns most of the section area. Evenly spaced range controls sit
-  directly above it, while a compact series key and three-column fact table sit
-  below it without a separate bulky toolbar.
+- The graph owns most of the section area. A compact top bar stacks forecast
+  assumptions on the left and pairs the FIRE and portfolio summaries on the
+  right. Only range controls sit below the graph. The section has no separate
+  headline, chart toolbar, or series legend.
+- On dashboard-sized screens, the complete section is a half-scale top-left tile
+  occupying roughly one quarter of its former area. Narrow screens retain the
+  full-size responsive layout.
 - Pointer and touch movement show a vertical guide and a compact tooltip with
   month, year, age, and total portfolio value.
 - Historical account totals use a solid line.
 - The forward base forecast uses a distinct solid line after an explicit Today marker.
-- Optional conservative and optimistic scenarios form a range rather than pretending
-  one return assumption is certain.
 - Lean, Medium, and Fat FIRE targets are horizontal milestone lines.
 - Top 10%, Top 5%, and Top 1% benchmark thresholds are age-based curves through
   the final available source age of 45. Curves interpolate to the visible chart
